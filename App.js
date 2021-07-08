@@ -17,13 +17,12 @@ import {
   View,
 } from 'react-native';
 import BlackButton from './components/BlackButton';
-import SpecialTextBox from './components/SpecialTextBox';
+import LoginScreen from './screens/LoginScreen';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <Text>Hi</Text>
-      <SpecialTextBox/>
+      <LoginScreen/>
     </View>
   );
 };
