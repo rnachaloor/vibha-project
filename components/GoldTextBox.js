@@ -30,7 +30,12 @@ const styles = StyleSheet.create({
       backgroundColor: "#D5B537",
       borderRadius: 50,
       paddingLeft: 10,
-      width: 250
+      width: 350,
+      ...Platform.select({
+        ios: {
+          height: 40
+        }
+      })
   },
   text: {
       left: 15,
