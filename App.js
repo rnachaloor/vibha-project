@@ -6,8 +6,8 @@
  * @flow strict-local
  */
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {
   SafeAreaView,
@@ -17,40 +17,65 @@ import {
   Text,
   useColorScheme,
   View,
-  Image
+  Image,
 } from 'react-native';
 import BlackButton from './components/BlackButton';
 import LoginScreen from './screens/LoginScreen';
 import SignUpDetailsScreen from './screens/SignUpDetailsScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
-
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
 const LoginStackScreen = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen 
-        name="Login" 
-        component={LoginScreen}
-      />
-      <Stack.Screen 
-        name="Sign Up" 
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="Sign Up"
         component={SignUpScreen}
-        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.png')} />}}/>
-      <Stack.Screen 
-        name="Details" 
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Details"
         component={SignUpDetailsScreen}
-        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.png')} />}}/>
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Forgot Password"
+        component={ForgotPasswordScreen}
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
 const App = () => {
   return (
     <NavigationContainer>
       <View style={styles.container}>
-        <LoginStackScreen/>
+        <LoginStackScreen />
       </View>
     </NavigationContainer>
   );
@@ -58,14 +83,14 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: "white"
+    flex: 1,
+    backgroundColor: 'white',
   },
   headerImage: {
-    alignSelf: "center",
-    justifyContent: "flex-start",
-    height: 82
-  }
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
+    height: 82,
+  },
 });
 
 export default App;

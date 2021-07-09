@@ -7,17 +7,17 @@ import {
   Text,
   useColorScheme,
   View,
-  TextInput,
   Image,
+  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import CenteredTextCard from '../components/CenteredTextCard';
+import WhiteButton from '../components/WhiteButton';
 
-const SignUpDetailsScreen = ({navigation}) => {
+const ForgotPasswordScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <View style={styles.mainbg}>
         <Image
           style={styles.headerImage}
@@ -26,18 +26,13 @@ const SignUpDetailsScreen = ({navigation}) => {
       </View>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>Sign Up</Text>
+        <Text style={styles.titleText}>Reset Password</Text>
         <View style={styles.largeSpacing}></View>
-        <View style={styles.cards}>
-          <CenteredTextCard height={100} width={150} text="Tutor" />
-          <CenteredTextCard height={100} width={150} text="Student" />
-        </View>
-        <View style={styles.largeSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Age" />
+        <GoldTextBox style={[styles.leftAlignment]} text="Email" />
         <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Grade" />
-        <View style={styles.largeSpacing}></View>
-        <BlackButton text="Sign Up" style={{alignSelf: 'center'}} />
+        <View style={styles.smallSpacing}></View>
+        <BlackButton text="Request Reset" style={{alignSelf: 'center'}} />
+        <View style={styles.smallSpacing}></View>
       </View>
     </SafeAreaView>
   );
@@ -59,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8839BF',
   },
   titleText: {
-    fontSize: 48,
+    fontSize: 40,
     alignSelf: 'center',
     color: 'white',
   },
@@ -72,11 +67,15 @@ const styles = StyleSheet.create({
   smallSpacing: {
     height: 12.5,
   },
-  cards: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+  forgot: {
+    alignSelf: 'center',
+    color: '#F0EEE6',
+  },
+  headerImage: {
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
+    height: 82,
   },
 });
 
-export default SignUpDetailsScreen;
+export default ForgotPasswordScreen;
