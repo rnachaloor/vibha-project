@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 
-const BlackButton = (props) => {
+const WhiteButton = (props) => {
     return (
         <View style={props.style}>
             <TouchableOpacity onPress={props.onPress} style={styles.button}>
@@ -22,7 +22,7 @@ const BlackButton = (props) => {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#464444",
+        backgroundColor: "#DACCCC",
         width: 200,
         borderRadius: 50,
         height: 50,
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     text: {
-        color: "white",
+        color: "black",
     }
 })
 
-export default BlackButton;
+export default WhiteButton;
 

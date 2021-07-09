@@ -12,25 +12,24 @@ import {
 } from 'react-native'
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import WhiteButton from '../components/WhiteButton';
+import CenteredTextCard from "../components/CenteredTextCard"
 
-const LoginScreen = ({navigation}) => {
+const SignUpDetailsScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
         <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>Log In</Text>
+        <Text style={styles.titleText}>Sign Up</Text>
         <View style={styles.largeSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Username"/>
-        <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Password" />
+        <View style={styles.cards}>
+            <CenteredTextCard height={100} width={150} text="Tutor" />
+            <CenteredTextCard height={100} width={150} text="Student" />
+        </View>
         <View style={styles.largeSpacing}></View>
-        <BlackButton text="Log In" style={{alignSelf: "center"}}/>
+        <GoldTextBox style={[styles.leftAlignment]} text="Age"/>
         <View style={styles.smallSpacing}></View>
-        <WhiteButton text="Sign Up" onPress={() => navigation.navigate("Sign Up")} style={{alignSelf: "center"}}/>
-        <View style={styles.smallSpacing}></View>
-        <TouchableOpacity>
-            <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+        <GoldTextBox style={[styles.leftAlignment]} text="Grade" />
+        <View style={styles.largeSpacing}></View>
+        <BlackButton text="Sign Up" style={{alignSelf: "center"}}/>
     </View>
   );
 };
@@ -54,11 +53,12 @@ const styles = StyleSheet.create({
   smallSpacing: {
       height: 12.5
   },
-  forgot: {
-      alignSelf: "center",
-      color: "#F0EEE6"
-  }
+  cards: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-around"
+  }  
   
 });
 
-export default LoginScreen;
+export default SignUpDetailsScreen;

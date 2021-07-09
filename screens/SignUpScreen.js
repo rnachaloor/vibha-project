@@ -12,25 +12,22 @@ import {
 } from 'react-native'
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import WhiteButton from '../components/WhiteButton';
 
-const LoginScreen = ({navigation}) => {
+const SignUpScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
         <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>Log In</Text>
+        <Text style={styles.titleText}>Sign Up</Text>
         <View style={styles.largeSpacing}></View>
         <GoldTextBox style={[styles.leftAlignment]} text="Username"/>
         <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Password" />
+        <GoldTextBox style={[styles.leftAlignment]} text="Email" textContentType="emailAddress"/>
+        <View style={styles.smallSpacing}></View>
+        <GoldTextBox style={[styles.leftAlignment]} text="Password" secureTextEntry={true} textContentType="password"/>
+        <View style={styles.smallSpacing}></View>
+        <GoldTextBox style={[styles.leftAlignment]} text="Confirm Password" secureTextEntry={true} textContentType="password"/>
         <View style={styles.largeSpacing}></View>
-        <BlackButton text="Log In" style={{alignSelf: "center"}}/>
-        <View style={styles.smallSpacing}></View>
-        <WhiteButton text="Sign Up" onPress={() => navigation.navigate("Sign Up")} style={{alignSelf: "center"}}/>
-        <View style={styles.smallSpacing}></View>
-        <TouchableOpacity>
-            <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+        <BlackButton onPress={() => navigation.navigate("Details")} text="Next" style={{alignSelf: "center"}}/>
     </View>
   );
 };
@@ -61,4 +58,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default LoginScreen;
+export default SignUpScreen;

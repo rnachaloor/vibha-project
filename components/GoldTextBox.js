@@ -19,6 +19,7 @@ const GoldTextBox = (props) => {
         multiline={props.multiline}
         onChangeText={props.onChangeText}
         textContentType={props.textContentType}
+        secureTextEntry={props.secureTextEntry}
         />
     </View>
   );
