@@ -14,6 +14,7 @@ import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 
 const SignUpScreen = ({navigation}) => {
+
   return (
     <View style={styles.container}>
         <View style={styles.largeSpacing}></View>

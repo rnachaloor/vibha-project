@@ -16,7 +16,8 @@ import WhiteButton from '../components/WhiteButton';
 
 const LoginScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {flexDirection: "column"}]} >
+        <View style={styles.otherbg}></View>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Log In</Text>
         <View style={styles.largeSpacing}></View>
@@ -38,10 +39,14 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
+    backgroundColor: "white",
+  },
+  otherbg: {
+    flex: 1, 
     backgroundColor: "#8839BF",
   },
   titleText: {
-    fontSize: 48,
+    fontSize: 55,
     alignSelf: "center",
     color: "white"
   },

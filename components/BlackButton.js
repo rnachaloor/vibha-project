@@ -23,7 +23,7 @@ const BlackButton = (props) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: "#464444",
-        width: 200,
+        width: 350,
         borderRadius: 50,
         height: 50,
         alignItems: "center",

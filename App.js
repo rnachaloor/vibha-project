@@ -29,19 +29,19 @@ const Stack = createStackNavigator()
 
 const LoginStackScreen = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen 
         name="Login" 
         component={LoginScreen}
-        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.jpg')} />}}/>
+      />
       <Stack.Screen 
         name="Sign Up" 
         component={SignUpScreen}
-        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.jpg')} />}}/>
+        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.png')} />}}/>
       <Stack.Screen 
         name="Details" 
         component={SignUpDetailsScreen}
-        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.jpg')} />}}/>
+        options={{ headerTitle: props => <Image style={styles.headerImage} source={require('./images/vlogo_white_bg.png')} />}}/>
     </Stack.Navigator>
   )
 }
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   headerImage: {
     alignSelf: "center",
     justifyContent: "flex-start",
-    height: 50
+    height: 82
   }
 });
 

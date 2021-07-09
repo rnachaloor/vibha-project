@@ -23,7 +23,7 @@ const WhiteButton = (props) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: "#DACCCC",
-        width: 200,
+        width: 350,
         borderRadius: 50,
         height: 50,
         alignItems: "center",
