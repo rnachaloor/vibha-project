@@ -14,16 +14,22 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import CenteredTextCard from '../components/CenteredTextCard';
+import Header from '../components/Header';
+import { useState } from 'react';
+import { storeData, getData } from "../functions/AsyncFunctions";
 
 const SignUpDetailsScreen = ({navigation}) => {
+  const [age, setAge] = useState(0);
+  const [grade, setGrade] = useState("")
+
+  const saveData = () => {
+    storeData("age", age);
+    storeData("grade", grade);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.mainbg}>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/vlogo_white_bg.png')}
-        />
-      </View>
+      <Header />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>
@@ -33,11 +39,11 @@ const SignUpDetailsScreen = ({navigation}) => {
           <CenteredTextCard height={100} width={150} text="Student" />
         </View>
         <View style={styles.largeSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Age" />
+        <GoldTextBox onChangeText={(value) => setAge(value)} style={[styles.leftAlignment]} text="Age" />
         <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Grade" />
+        <GoldTextBox onChangeText={(value) => setGrade(value)} style={[styles.leftAlignment]} text="Grade" />
         <View style={styles.largeSpacing}></View>
-        <BlackButton text="Sign Up" style={{alignSelf: 'center'}} />
+        <BlackButton onPress={() => navigation.navigate("Home")} text="Sign Up" style={{alignSelf: 'center'}} />
       </View>
     </SafeAreaView>
   );

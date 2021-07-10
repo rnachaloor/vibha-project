@@ -20,6 +20,7 @@ const GoldTextBox = (props) => {
         onChangeText={props.onChangeText}
         textContentType={props.textContentType}
         secureTextEntry={props.secureTextEntry}
+        onChangeText={props.onChangeText}
         />
     </View>
   );

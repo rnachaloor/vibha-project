@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "446909967011",
+    "project_id": "vibha-e4d08",
+    "storage_bucket": "vibha-e4d08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446909967011:android:4afbe298208bf67f586d16",
+        "android_client_info": {
+          "package_name": "com.vibha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446909967011-ugh4dk805rcot86u0ondfsuo9fcrjvp7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vibha",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "446909967011-baj8et3ka3epcq9l761a1pdloq28fke5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Dgfxm37TsthOL7u6E9Ga9g1pVK8mfM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446909967011-baj8et3ka3epcq9l761a1pdloq28fke5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

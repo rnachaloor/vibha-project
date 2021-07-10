@@ -14,16 +14,12 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import WhiteButton from '../components/WhiteButton';
+import Header from '../components/Header';
 
 const LoginScreen = ({navigation}) => {
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <View style={styles.mainbg}>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/vlogo_white_bg.png')}
-        />
-      </View>
+      <Header />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Log In</Text>
