@@ -21,6 +21,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 
 import FeedbackScreen from './FeedbackScreen';
+import ContactScreen from './ContactScreen';
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -44,8 +45,8 @@ const HomeNavigationScreen = ({navigation}) => {
         <Drawer.Screen name="Tutor List" component={TutorListScreen} />
         <Drawer.Screen name="Calendar" component={CalendarScreen} />
         <Drawer.Screen name="Records" component={RecordsScreen} />
-        <Drawer.Screen name="Contact" component={ContactScreen} />
         <Drawer.Screen name="Sponsors" component={SponsorsScreen} />*/}
+      <Drawer.Screen name="Contact" component={ContactScreen} />
       <Drawer.Screen name="Feedback" component={FeedbackScreen} />
     </Drawer.Navigator>
   );
