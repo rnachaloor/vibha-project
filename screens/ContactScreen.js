@@ -22,53 +22,61 @@ const ContactScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Contact</Text>
         <View style={styles.largeSpacing}></View>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/insta.png')}
-        />
-        <TouchableOpacity>
-          <Text
-            style={styles.forgot}
-            onPress={() => navigation.navigate('Forgot Password')}>
-            Instagram
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.direction}>
+          <Image
+            style={styles.headerImage}
+            source={require('../images/insta.png')}
+          />
+          <TouchableOpacity>
+            <Text
+              style={styles.forgot}
+              onPress={() => navigation.navigate('Forgot Password')}>
+              Instagram
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.largeSpacing}></View>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/phone.png')}
-        />
-        <TouchableOpacity>
-          <Text
-            style={styles.forgot}
-            onPress={() => navigation.navigate('Forgot Password')}>
-            Phone Number
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.direction}>
+          <Image
+            style={styles.headerImage}
+            source={require('../images/phone.png')}
+          />
+          <TouchableOpacity>
+            <Text
+              style={styles.forgot}
+              onPress={() => navigation.navigate('Forgot Password')}>
+              Phone Number
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.largeSpacing}></View>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/email.png')}
-        />
-        <TouchableOpacity>
-          <Text
-            style={styles.forgot}
-            onPress={() => navigation.navigate('Forgot Password')}>
-            Email
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.direction}>
+          <Image
+            style={styles.headerImage}
+            source={require('../images/email.png')}
+          />
+          <TouchableOpacity>
+            <Text
+              style={styles.forgot}
+              onPress={() => navigation.navigate('Forgot Password')}>
+              Email
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.largeSpacing}></View>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/twitt.png')}
-        />
-        <TouchableOpacity>
-          <Text
-            style={styles.forgot}
-            onPress={() => navigation.navigate('Forgot Password')}>
-            Twitter
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.direction}>
+          <Image
+            style={styles.headerImage}
+            source={require('../images/twitt.png')}
+          />
+          <TouchableOpacity>
+            <Text
+              style={styles.forgot}
+              onPress={() => navigation.navigate('Forgot Password')}>
+              Twitter
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -100,24 +108,26 @@ const styles = StyleSheet.create({
     left: 20,
     fontSize: 16,
   },
-  otherAlignment: {
-    left: 35,
-    fontSize: 16,
-  },
   largeSpacing: {
     height: 25,
-  },
-  smallSpacing: {
-    height: 12.5,
   },
   forgot: {
     alignSelf: 'center',
     color: '#F0EEE6',
+    fontSize: 16,
+    paddingTop: 30,
+    paddingLeft: 30,
   },
   headerImage: {
+    resizeMode: 'stretch',
     alignSelf: 'center',
     justifyContent: 'flex-start',
     height: 82,
+    width: 82,
+  },
+  direction: {
+    flexDirection: 'row',
+    paddingLeft: 60,
   },
 });
 
