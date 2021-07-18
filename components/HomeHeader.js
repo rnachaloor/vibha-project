@@ -10,11 +10,25 @@ import {
   View,
   Image,
 } from 'react-native';
-import {Icon} from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
 
 const HomeHeader = props => {
+  const openMenu = () => {
+    navigation.openDrawer();
+  };
+
   return (
     <View style={styles.mainbg}>
+      <Icon
+        name="menu"
+        size={50}
+        onPress={() => {
+          console.log('hello');
+        }}
+        style={styles.icon}
+      />
       <Image
         style={styles.headerImage}
         source={require('../images/vlogo_white_bg.png')}
@@ -35,6 +49,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     justifyContent: 'flex-start',
     height: 82,
+  },
+  icon: {
+    position: 'absolute',
+    left: -80,
   },
 });
 

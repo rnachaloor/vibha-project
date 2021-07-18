@@ -15,7 +15,7 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import WhiteButton from '../components/WhiteButton';
-import Header from '../components/Header';
+import HomeHeader from '../components/HomeHeader';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
@@ -27,11 +27,14 @@ import SponsorScreen from './SponsorScreen';
 
 const HomeScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="testing"
-      />
+    <View style={styles.container}>
+      <HomeHeader />
+      <View style={styles.otherbg}>
+        <Button
+          onPress={() => navigation.navigate('Notifications')}
+          title="testing"
+        />
+      </View>
     </View>
   );
 };
@@ -53,5 +56,16 @@ const HomeNavigationScreen = ({navigation}) => {
     </Drawer.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  otherbg: {
+    flex: 7,
+    backgroundColor: '#8839BF',
+  },
+});
 
 export default HomeNavigationScreen;
