@@ -16,29 +16,41 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import HomeHeader from '../components/HomeHeader';
-import DropDownMenu from '../components/DropDownMenu';
 
-const RecordScreen = ({navigation}) => {
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+
+const returnDateString = () => {
+}
+
+let day = returnDateString()
+
+const CalendarScreen = ({navigation}) => {
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <HomeHeader onPress={() => navigation.openDrawer()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>Records</Text>
+        <Text style={styles.titleText}>Calendar</Text>
         <View style={styles.largeSpacing}></View>
-        <View style={styles.insidebg}>
-          <Text style={styles.forgot}># of Sessions:</Text>
-          <Text style={styles.forgot}>Total Hours Tutored:</Text>
-          <Text style={styles.forgot}># of Students Tutored:</Text>
-          <View style={styles.direction}>
-            <Text style={styles.forgot}>Dates Tutored:</Text>
-            <View style={styles.other}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.text}>View Dates</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <Calendar 
+            minDate={Date()} 
+            onPressArrowLeft={subtractMonth => subtractMonth()} 
+            onPressArrowRight={addMonth => addMonth()} 
+            enableSwipeMonths={true}
+            markedDates={{
+                "2021-07-19" : {selected: true, marked: true, selectedColor: '#D5B537'}
+            }}
+            style={styles.calendar}
+            theme={{
+                backgroundColor: '#8839BF',
+                calendarBackground: '#8839BF',
+                arrowColor: '#D5B537',
+                selectedDayBackgroundColor: '#D5B537',
+                selectedDayTextColor: 'black',
+                monthTextColor: '#D5B537',
+                textDisabledColor: 'gray',
+                dayTextColor: 'white',
+            }}/>
       </View>
     </SafeAreaView>
   );
@@ -61,14 +73,9 @@ const styles = StyleSheet.create({
     flex: 7,
     backgroundColor: '#8839BF',
   },
-  insidebg: {
-    alignSelf: 'center',
-    backgroundColor: '#D5B537',
-    width: 380,
-    height: 500,
-    borderRadius: 20,
-    paddingTop: 40,
-    paddingLeft: 20,
+  calendar: {
+    borderWidth: 3,
+    borderColor: '#D5B537',
   },
   titleText: {
     fontSize: 55,
@@ -77,20 +84,6 @@ const styles = StyleSheet.create({
   },
   largeSpacing: {
     height: 25,
-  },
-  forgot: {
-    alignSelf: 'auto',
-    color: 'black',
-    fontSize: 20,
-    paddingBottom: 20,
-  },
-  button: {
-    backgroundColor: '#464444',
-    width: 200,
-    borderRadius: 50,
-    height: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   text: {
     color: 'white',
@@ -103,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecordScreen;
+export default CalendarScreen;

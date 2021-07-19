@@ -17,7 +17,7 @@ import HomeHeader from '../components/HomeHeader';
 const ContactScreen = ({navigation}) => {
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <HomeHeader />
+      <HomeHeader onPress={() => navigation.openDrawer()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Contact</Text>

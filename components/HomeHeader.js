@@ -11,24 +11,17 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
 
-const HomeHeader = props => {
-  const openMenu = () => {
-    navigation.openDrawer();
-  };
+const HomeHeader = (props) => {
 
   return (
     <View style={styles.mainbg}>
-      <Icon
-        name="menu"
-        size={50}
-        onPress={() => {
-          console.log('hello');
-        }}
-        style={styles.icon}
-      />
+      <TouchableOpacity style={styles.icon} onPress={props.onPress}>
+        <Icon
+          name="menu"
+          size={50}
+        />
+      </TouchableOpacity>
       <Image
         style={styles.headerImage}
         source={require('../images/vlogo_white_bg.png')}
@@ -41,18 +34,17 @@ const styles = StyleSheet.create({
   mainbg: {
     flex: 1,
     backgroundColor: 'white',
-    alignSelf: 'center',
     justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "flex-start"
   },
   headerImage: {
-    left: 75,
-    alignSelf: 'flex-end',
-    justifyContent: 'flex-start',
-    height: 82,
+    right: -40
+
   },
   icon: {
-    position: 'absolute',
-    left: -80,
+    left: -50,
+    top: 15
   },
 });
 

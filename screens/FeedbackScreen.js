@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,7 +7,6 @@ import {
   Text,
   useColorScheme,
   View,
-  useState,
   Image,
   TextInput,
   TouchableOpacity,
@@ -15,21 +14,53 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import HomeHeader from '../components/HomeHeader';
-import DropDownMenu from '../components/DropDownMenu';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const FeedbackScreen = ({navigation}) => {
+
+  const [textBoxName, setTextBoxName] = useState("Other");
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Tab Feedback', value: 'tab'},
+    {label: 'Tutor Feedback', value: 'tutor'},
+    {label: 'Other Feedback', value: 'other'},
+  ]);
+
+  useEffect(() =>  {
+    if (value == 'tab') {
+      setTextBoxName("Tab Name")
+    } else if (value == 'tutor') {
+      setTextBoxName("Tutor Name")
+    } else {
+      setTextBoxName("Other")
+    }
+  })
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <HomeHeader />
+      <HomeHeader onPress={() => navigation.openDrawer()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Feedback</Text>
         <View style={styles.largeSpacing}></View>
-        <DropDownMenu />
+        <DropDownPicker
+          style={styles.dropDown}
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          dropDownContainerStyle={{
+            width: 350,
+            alignSelf: 'center',
+          }}
+        />
         <View style={styles.largeSpacing}></View>
         <GoldTextBox
           style={[styles.leftAlignment]}
-          text="Tutor Name / Tab Name"
+          text={textBoxName}
         />
         <View style={styles.largeSpacing}></View>
         <Text style={styles.otherAlignment}>Comments</Text>
@@ -87,6 +118,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-start',
     height: 82,
+  },
+  dropDown: {
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    width: 350,
+    color: 'black',
   },
 });
 

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useState,
   View,
   TextInput,
 } from 'react-native';
@@ -13,9 +12,9 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const DropDownMenu = props => {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(null);
-  const [items, setItems] = React.useState([
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
     {label: 'Tab Feedback', value: 'tab'},
     {label: 'Tutor Feedback', value: 'tutor'},
     {label: 'Other Feedback', value: 'other'},
