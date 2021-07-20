@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,7 +7,6 @@ import {
   Text,
   useColorScheme,
   View,
-  useState,
   Image,
   TextInput,
   TouchableOpacity,
@@ -20,21 +19,14 @@ import HomeHeader from '../components/HomeHeader';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import moment from 'moment';
 
-const CalendarScreen = ({navigation}) => {
-  this.state = {
-    selected_date: '2021-07-19',
-    markedDates: {'2021-07-19': {selected: true}},
-  };
+const INITIAL_DATE = '2021-07-20';
 
-  const getSelectedDay = date => {
-    let markedDates = {};
-    markedDates[date] = {selected: true};
-    let serviceDate = moment(date);
-    serviceDate = serviceDate.format('YYYY.MM.DD');
-    this.setState({
-      selectedDate: serviceDate,
-      markedDates: markedDates,
-    });
+const CalendarScreen = ({navigation}) => {
+  const [selected, setSelected] = useState(INITIAL_DATE);
+  const [showMarkedDatesExamples, setShowMarkedDatesExamples] = useState(false);
+
+  const onDayPress = day => {
+    setSelected(day.dateString);
   };
 
   return (
@@ -49,7 +41,11 @@ const CalendarScreen = ({navigation}) => {
           onPressArrowLeft={subtractMonth => subtractMonth()}
           onPressArrowRight={addMonth => addMonth()}
           enableSwipeMonths={true}
-          markedDates={this.state.selected_date}
+          markedDates={{
+            [selected]: {
+              selected: true,
+            },
+          }}
           style={styles.calendar}
           theme={{
             backgroundColor: '#8839BF',
@@ -60,10 +56,9 @@ const CalendarScreen = ({navigation}) => {
             monthTextColor: '#D5B537',
             textDisabledColor: 'gray',
             dayTextColor: 'white',
+            todayTextColor: '#D5B537',
           }}
-          onDayPress={day => {
-            getSelectedDay(day.dateString);
-          }}
+          onDayPress={onDayPress}
         />
       </View>
     </SafeAreaView>
