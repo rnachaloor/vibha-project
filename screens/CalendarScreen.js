@@ -11,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+  Modal,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -18,26 +19,45 @@ import HomeHeader from '../components/HomeHeader';
 
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const INITIAL_DATE = '2021-07-20';
+const INITIAL_DATE = moment().format('YYYY-MM-DD');
 
 const CalendarScreen = ({navigation}) => {
   const [selected, setSelected] = useState(INITIAL_DATE);
-  const [showMarkedDatesExamples, setShowMarkedDatesExamples] = useState(false);
+  const [showMarkedDates, setShowMarkedDates] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalDate, setModalDate] = useState('Unknown');
 
   const onDayPress = day => {
     setSelected(day.dateString);
   };
 
+  const onDayLongPress = day => {
+    setModalOpen(true);
+    setModalDate(moment().format('MMMM DD, YYYY'));
+  };
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
+      <Modal visible={modalOpen} animationType="fade">
+        <View style={styles.modal}>
+          <TouchableOpacity
+            style={styles.icon}
+            onPress={() => setModalOpen(false)}>
+            <Icon name="close" size={30} />
+          </TouchableOpacity>
+          <Text style={styles.otherText}>{modalDate}</Text>
+        </View>
+      </Modal>
+
       <HomeHeader onPress={() => navigation.openDrawer()} />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Calendar</Text>
         <View style={styles.largeSpacing}></View>
         <Calendar
-          minDate={Date()}
+          minDate={INITIAL_DATE}
           onPressArrowLeft={subtractMonth => subtractMonth()}
           onPressArrowRight={addMonth => addMonth()}
           enableSwipeMonths={true}
@@ -59,6 +79,11 @@ const CalendarScreen = ({navigation}) => {
             todayTextColor: '#D5B537',
           }}
           onDayPress={onDayPress}
+          onDayLongPress={onDayLongPress}
+        />
+        <BlackButton
+          text="Next"
+          style={{alignSelf: 'center', paddingTop: 20}}
         />
       </View>
     </SafeAreaView>
@@ -91,17 +116,26 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
   },
+  otherText: {
+    fontSize: 55,
+    alignSelf: 'center',
+    color: 'black',
+  },
   largeSpacing: {
     height: 25,
   },
   text: {
     color: 'white',
   },
-  other: {
-    paddingLeft: 15,
+  icon: {
+    alignItems: 'center',
+    paddingTop: 30,
+    justifyContent: 'center',
+    paddingBottom: 20,
   },
-  direction: {
-    flexDirection: 'row',
+  modal: {
+    flex: 1,
+    backgroundColor: '#D5B537',
   },
 });
 
