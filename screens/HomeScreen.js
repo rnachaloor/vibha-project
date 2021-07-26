@@ -25,11 +25,12 @@ import ContactScreen from './ContactScreen';
 import RecordScreen from './RecordScreen';
 import SponsorScreen from './SponsorScreen';
 import CalendarScreen from './CalendarScreen';
+import AboutScreen from './AboutScreen';
 
 const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <HomeHeader onPress={() => navigation.openDrawer()}/>
+      <HomeHeader onPress={() => navigation.openDrawer()} />
       <View style={styles.otherbg}>
         <Button
           onPress={() => navigation.navigate('Notifications')}
@@ -46,8 +47,8 @@ const HomeNavigationScreen = ({navigation}) => {
   return (
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} />
-      {/*<Drawer.Screen name="About" component={AboutScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="About" component={AboutScreen} />
+      {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />
         <Drawer.Screen name="Tutor List" component={TutorListScreen} />*/}
       <Drawer.Screen name="Calendar" component={CalendarScreen} />
       <Drawer.Screen name="Records" component={RecordScreen} />
