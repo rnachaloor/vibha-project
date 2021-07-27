@@ -26,6 +26,7 @@ import RecordScreen from './RecordScreen';
 import SponsorScreen from './SponsorScreen';
 import CalendarScreen from './CalendarScreen';
 import AboutScreen from './AboutScreen';
+import TutorListScreen from './TutorListScreen';
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -48,8 +49,8 @@ const HomeNavigationScreen = ({navigation}) => {
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="About" component={AboutScreen} />
-      {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />
-        <Drawer.Screen name="Tutor List" component={TutorListScreen} />*/}
+      {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />*/}
+      <Drawer.Screen name="Tutor List" component={TutorListScreen} />
       <Drawer.Screen name="Calendar" component={CalendarScreen} />
       <Drawer.Screen name="Records" component={RecordScreen} />
       <Drawer.Screen name="Sponsors" component={SponsorScreen} />
