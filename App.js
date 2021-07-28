@@ -29,34 +29,61 @@ import SignUpDetailsScreen from './screens/SignUpDetailsScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
-import HomeScreen from './screens/HomeScreen';
-import FeedbackScreen from './screens/FeedbackScreen';
-import ContactScreen from './screens/ContactScreen';
-import RecordScreen from './screens/RecordScreen';
-import SponsorScreen from './screens/SponsorScreen';
-import CalendarScreen from './screens/CalendarScreen';
-import AboutScreen from './screens/AboutScreen';
-import TutorListScreen from './screens/TutorListScreen';
-import {DrawerContent} from './screens/DrawerContent';
+import HomeNavigationScreen from './screens/HomeScreen';
 
-const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+const LoginStackScreen = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="Sign Up"
+        component={SignUpScreen}
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={SignUpDetailsScreen}
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Forgot Password"
+        component={ForgotPasswordScreen}
+        options={{
+          headerTitle: props => (
+            <Image
+              style={styles.headerImage}
+              source={require('./images/vlogo_white_bg.png')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen name="Home" component={HomeNavigationScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="Home"
-        drawerContent={props => <DrawerContent {...props} />}>
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="About" component={AboutScreen} />
-        {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />*/}
-        <Drawer.Screen name="Tutor List" component={TutorListScreen} />
-        <Drawer.Screen name="Calendar" component={CalendarScreen} />
-        <Drawer.Screen name="Records" component={RecordScreen} />
-        <Drawer.Screen name="Sponsors" component={SponsorScreen} />
-        <Drawer.Screen name="Contact" component={ContactScreen} />
-        <Drawer.Screen name="Feedback" component={FeedbackScreen} />
-      </Drawer.Navigator>
+      <View style={styles.container}>
+        <LoginStackScreen />
+      </View>
     </NavigationContainer>
   );
 };
