@@ -8,6 +8,8 @@
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import React from 'react';
 import {
   SafeAreaView,
@@ -19,68 +21,42 @@ import {
   View,
   Image,
 } from 'react-native';
+
 import BlackButton from './components/BlackButton';
+
 import LoginScreen from './screens/LoginScreen';
 import SignUpDetailsScreen from './screens/SignUpDetailsScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
-import HomeNavigationScreen from './screens/HomeScreen';
+
+import HomeScreen from './screens/HomeScreen';
 import FeedbackScreen from './screens/FeedbackScreen';
+import ContactScreen from './screens/ContactScreen';
+import RecordScreen from './screens/RecordScreen';
+import SponsorScreen from './screens/SponsorScreen';
+import CalendarScreen from './screens/CalendarScreen';
+import AboutScreen from './screens/AboutScreen';
+import TutorListScreen from './screens/TutorListScreen';
+import {DrawerContent} from './screens/DrawerContent';
 
-const Stack = createStackNavigator();
-
-const LoginStackScreen = () => {
-  return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen
-        name="Sign Up"
-        component={SignUpScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={SignUpDetailsScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Forgot Password"
-        component={ForgotPasswordScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen name="Home" component={HomeNavigationScreen} />
-      <Stack.Screen name="Feedback" component={FeedbackScreen} />
-    </Stack.Navigator>
-  );
-};
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <LoginStackScreen />
-      </View>
+      <Drawer.Navigator
+        initialRouteName="Home"
+        drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="About" component={AboutScreen} />
+        {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />*/}
+        <Drawer.Screen name="Tutor List" component={TutorListScreen} />
+        <Drawer.Screen name="Calendar" component={CalendarScreen} />
+        <Drawer.Screen name="Records" component={RecordScreen} />
+        <Drawer.Screen name="Sponsors" component={SponsorScreen} />
+        <Drawer.Screen name="Contact" component={ContactScreen} />
+        <Drawer.Screen name="Feedback" component={FeedbackScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
