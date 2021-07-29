@@ -22,7 +22,8 @@ export function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Profile')}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
                 <Avatar.Image
                   source={{

@@ -7,7 +7,6 @@ import {
   Text,
   useColorScheme,
   View,
-  useState,
   Image,
   TextInput,
   TouchableOpacity,
@@ -15,19 +14,43 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import HomeHeader from '../components/HomeHeader';
+import Header from '../components/Header';
 import DropDownMenu from '../components/DropDownMenu';
 
-const SponsorScreen = ({navigation}) => {
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+const ProfileScreen = ({navigation}) => {
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <HomeHeader onPress={() => navigation.openDrawer()} />
+      <Header />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>Sponsors</Text>
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}>
+          <Icon name="close" size={30} />
+        </TouchableOpacity>
+        <View style={styles.smallSpacing}></View>
+        <Text style={styles.titleText}>My Profile</Text>
         <View style={styles.largeSpacing}></View>
       </View>
     </SafeAreaView>
+  );
+};
+
+const Tab = createBottomTabNavigator();
+
+const ProfileNavigationScreen = ({navigation}) => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="OtherInfo" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };
 
@@ -56,6 +79,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingTop: 40,
     paddingLeft: 20,
+  },
+  icon: {
+    alignItems: 'center',
+    paddingTop: 5,
+    justifyContent: 'center',
+    paddingBottom: 5,
   },
   titleText: {
     fontSize: 55,
@@ -90,4 +119,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SponsorScreen;
+export default ProfileScreen;

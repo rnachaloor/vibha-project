@@ -30,6 +30,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -74,6 +75,7 @@ const LoginStackScreen = () => {
         }}
       />
       <Stack.Screen name="Home" component={HomeNavigationScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
