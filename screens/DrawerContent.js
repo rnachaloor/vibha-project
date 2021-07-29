@@ -65,19 +65,6 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
-                <Icon
-                  name="information-circle-outline"
-                  color={color}
-                  size={size}
-                />
-              )}
-              label="About"
-              onPress={() => {
-                props.navigation.navigate('About');
-              }}
-            />
-            <DrawerItem
-              icon={({color, size}) => (
                 <Icon name="list-outline" color={color} size={size} />
               )}
               label="Tutor List"
@@ -105,6 +92,30 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({color, size}) => (
+                <Icon name="stats-chart-outline" color={color} size={size} />
+              )}
+              label="Feedback"
+              onPress={() => {
+                props.navigation.navigate('Feedback');
+              }}
+            />
+          </Drawer.Section>
+          <Drawer.Section style={styles.drawerSection}>
+            <DrawerItem
+              icon={({color, size}) => (
+                <Icon
+                  name="information-circle-outline"
+                  color={color}
+                  size={size}
+                />
+              )}
+              label="About"
+              onPress={() => {
+                props.navigation.navigate('About');
+              }}
+            />
+            <DrawerItem
+              icon={({color, size}) => (
                 <Icon name="people-outline" color={color} size={size} />
               )}
               label="Contact"
@@ -121,18 +132,10 @@ export function DrawerContent(props) {
                 props.navigation.navigate('Sponsors');
               }}
             />
-            <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="stats-chart-outline" color={color} size={size} />
-              )}
-              label="Feedback"
-              onPress={() => {
-                props.navigation.navigate('Feedback');
-              }}
-            />
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
+
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({color, size}) => (
@@ -186,5 +189,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 12,
     paddingHorizontal: 16,
+  },
+  drawerSection: {
+    marginTop: 15,
   },
 });
