@@ -35,7 +35,7 @@ const CalendarScreen = ({navigation}) => {
 
   const onDayLongPress = day => {
     setModalOpen(true);
-    setModalDate(moment().format('MMMM DD, YYYY'));
+    setModalDate(moment(day.dateString).format('MMM. DD, YYYY'));
   };
 
   return (
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   otherText: {
-    fontSize: 55,
+    fontSize: 50,
     alignSelf: 'center',
     color: 'black',
   },
