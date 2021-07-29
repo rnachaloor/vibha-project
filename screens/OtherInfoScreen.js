@@ -7,6 +7,7 @@ import {
   Text,
   useColorScheme,
   View,
+  useState,
   Image,
   TextInput,
   TouchableOpacity,
@@ -19,12 +20,7 @@ import DropDownMenu from '../components/DropDownMenu';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import OtherInfoScreen from './OtherInfoScreen';
-import SettingsScreen from './SettingsScreen';
-
-const ProfileScreen = ({navigation}) => {
+const OtherInfoScreen = ({navigation}) => {
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <ProfileHeader onPress={() => navigation.navigate('Home')} />
@@ -39,19 +35,19 @@ const ProfileScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.insidebg}>
-          <Text style={styles.forgot}>Username:</Text>
+          <Text style={styles.forgot}>Age:</Text>
+          <Text style={styles.forgot}>Grade:</Text>
+          <Text style={styles.forgot}>Subjects:</Text>
+          <Text style={styles.forgot}># of Sessions:</Text>
+
           <View style={styles.direction}>
-            <Text style={styles.forgot}>Password:</Text>
+            <Text style={styles.forgot}>Session Dates:</Text>
             <View style={styles.another}>
               <TouchableOpacity style={styles.otherButton}>
-                <Text style={styles.text}>Change Password</Text>
+                <Text style={styles.text}>View Dates</Text>
               </TouchableOpacity>
             </View>
           </View>
-
-          <Text style={styles.forgot}>Name:</Text>
-          <Text style={styles.forgot}>Email:</Text>
-          <Text style={styles.forgot}>Phone #:</Text>
 
           <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>Save Changes</Text>
@@ -59,64 +55,6 @@ const ProfileScreen = ({navigation}) => {
         </View>
       </View>
     </SafeAreaView>
-  );
-};
-
-const Tab = createBottomTabNavigator();
-
-const ProfileNavigationScreen = ({navigation}) => {
-  return (
-    <Tab.Navigator
-      tabBarOptions={{
-        showLabel: false,
-        style: {
-          position: 'absolute',
-          bottom: 10,
-          left: 20,
-          right: 20,
-          elevation: 0,
-          backgroundColor: 'white',
-          borderRadius: 15,
-          height: 70,
-        },
-      }}>
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Icon name="person-outline" color="black" size={40} />
-              <Text style={{fontSize: 15}}>Info</Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="OtherInfo"
-        component={OtherInfoScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Icon name="information-circle-outline" color="black" size={40} />
-              <Text style={{fontSize: 15}}>Other Info</Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Icon name="settings-outline" color="black" size={40} />
-              <Text style={{fontSize: 15}}>Settings</Text>
-            </View>
-          ),
-        }}
-      />
-    </Tab.Navigator>
   );
 };
 
@@ -199,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileNavigationScreen;
+export default OtherInfoScreen;
