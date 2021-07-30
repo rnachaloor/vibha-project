@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,8 +11,9 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+  Modal,
 } from 'react-native';
-import GoldTextBox from '../components/GoldTextBox';
+import PurpleTextBox from '../components/PurpleTextBox';
 import BlackButton from '../components/BlackButton';
 import ProfileHeader from '../components/ProfileHeader';
 import DropDownMenu from '../components/DropDownMenu';
@@ -25,8 +26,31 @@ import OtherInfoScreen from './OtherInfoScreen';
 import SettingsScreen from './SettingsScreen';
 
 const ProfileScreen = ({navigation}) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
+      <Modal visible={modalOpen} animationType="slide">
+        <View style={styles.modal}>
+          <TouchableOpacity
+            style={styles.otherIcon}
+            onPress={() => setModalOpen(false)}>
+            <Icon name="close" size={30} />
+          </TouchableOpacity>
+          <Text style={styles.otherText}>Change Password</Text>
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox style={[styles.leftAlignment]} text="Old Password" />
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox style={[styles.leftAlignment]} text="New Password" />
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox
+            style={[styles.leftAlignment]}
+            text="Confirm New Password"
+          />
+          <View style={styles.largeSpacing}></View>
+          <BlackButton text="Submit" style={{alignSelf: 'center'}} />
+        </View>
+      </Modal>
       <ProfileHeader onPress={() => navigation.navigate('Home')} />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
@@ -43,7 +67,9 @@ const ProfileScreen = ({navigation}) => {
           <View style={styles.direction}>
             <Text style={styles.forgot}>Password:</Text>
             <View style={styles.another}>
-              <TouchableOpacity style={styles.otherButton}>
+              <TouchableOpacity
+                style={styles.otherButton}
+                onPress={() => setModalOpen(true)}>
                 <Text style={styles.text}>Change Password</Text>
               </TouchableOpacity>
             </View>
@@ -139,6 +165,18 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     bottom: 25,
   },
+  modal: {
+    flex: 1,
+    backgroundColor: '#D5B537',
+  },
+  leftAlignment: {
+    left: 25,
+  },
+  otherText: {
+    fontSize: 45,
+    alignSelf: 'center',
+    color: 'black',
+  },
   text: {
     color: 'white',
   },
@@ -182,6 +220,12 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     justifyContent: 'center',
     paddingBottom: 5,
+  },
+  otherIcon: {
+    alignItems: 'center',
+    paddingTop: 20,
+    justifyContent: 'center',
+    paddingBottom: 20,
   },
   titleText: {
     fontSize: 55,

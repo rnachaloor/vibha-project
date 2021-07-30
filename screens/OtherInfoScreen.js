@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,11 +7,11 @@ import {
   Text,
   useColorScheme,
   View,
-  useState,
   Image,
   TextInput,
   TouchableOpacity,
   Button,
+  Modal,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -21,8 +21,21 @@ import DropDownMenu from '../components/DropDownMenu';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const OtherInfoScreen = ({navigation}) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
+      <Modal visible={modalOpen} animationType="slide">
+        <View style={styles.modal}>
+          <TouchableOpacity
+            style={styles.otherIcon}
+            onPress={() => setModalOpen(false)}>
+            <Icon name="close" size={30} />
+          </TouchableOpacity>
+          <Text style={styles.otherText}>Session Dates</Text>
+          <View style={styles.largeSpacing}></View>
+        </View>
+      </Modal>
       <ProfileHeader onPress={() => navigation.navigate('Home')} />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
@@ -43,7 +56,9 @@ const OtherInfoScreen = ({navigation}) => {
           <View style={styles.direction}>
             <Text style={styles.forgot}>Session Dates:</Text>
             <View style={styles.another}>
-              <TouchableOpacity style={styles.otherButton}>
+              <TouchableOpacity
+                style={styles.otherButton}
+                onPress={() => setModalOpen(true)}>
                 <Text style={styles.text}>View Dates</Text>
               </TouchableOpacity>
             </View>
@@ -76,6 +91,24 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 20,
     bottom: 25,
+  },
+  otherIcon: {
+    alignItems: 'center',
+    paddingTop: 20,
+    justifyContent: 'center',
+    paddingBottom: 20,
+  },
+  modal: {
+    flex: 1,
+    backgroundColor: '#D5B537',
+  },
+  leftAlignment: {
+    left: 25,
+  },
+  otherText: {
+    fontSize: 45,
+    alignSelf: 'center',
+    color: 'black',
   },
   text: {
     color: 'white',
