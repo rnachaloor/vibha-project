@@ -14,23 +14,22 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import Header from '../components/Header';
-import { useState } from 'react';
-import { storeData, getData } from "../functions/AsyncFunctions";
+import {useState} from 'react';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const SignUpScreen = ({navigation}) => {
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const saveInfo = () => {
-    storeData("username", username);
-    storeData("email", email);
-    storeData("password", password);
-    storeData("confirmPassword", confirmPassword);
-    navigation.navigate('Details')
-  }
+    storeData('username', username);
+    storeData('email', email);
+    storeData('password', password);
+    storeData('confirmPassword', confirmPassword);
+    navigation.navigate('Details');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,13 +38,17 @@ const SignUpScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>
         <View style={styles.largeSpacing}></View>
-        <GoldTextBox onChangeText={(value) => setUsername(value)} style={[styles.leftAlignment]} text="Username" />
+        <GoldTextBox
+          onChangeText={value => setUsername(value)}
+          style={[styles.leftAlignment]}
+          text="Username"
+        />
         <View style={styles.smallSpacing}></View>
         <GoldTextBox
           style={[styles.leftAlignment]}
           text="Email"
           textContentType="emailAddress"
-          onChangeText={(value) => setEmail(value)}
+          onChangeText={value => setEmail(value)}
         />
         <View style={styles.smallSpacing}></View>
         <GoldTextBox
@@ -53,7 +56,7 @@ const SignUpScreen = ({navigation}) => {
           text="Password"
           secureTextEntry={true}
           textContentType="password"
-          onChangeText={(value) => setPassword(value)}
+          onChangeText={value => setPassword(value)}
         />
         <View style={styles.smallSpacing}></View>
         <GoldTextBox
@@ -61,7 +64,7 @@ const SignUpScreen = ({navigation}) => {
           text="Confirm Password"
           secureTextEntry={true}
           textContentType="password"
-          onChangeText={(value) => setConfirmPassword(value)}
+          onChangeText={value => setConfirmPassword(value)}
         />
         <View style={styles.largeSpacing}></View>
         <BlackButton
@@ -69,6 +72,20 @@ const SignUpScreen = ({navigation}) => {
           text="Next"
           style={{alignSelf: 'center'}}
         />
+        <View style={styles.largeSpacing}></View>
+        <View style={styles.largeSpacing}></View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignSelf: 'center',
+          }}>
+          <Text style={{fontSize: 18}}>Have and Account?</Text>
+          <TouchableOpacity
+            style={{paddingLeft: 10}}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={{fontWeight: 'bold', fontSize: 18}}>Sign in</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
