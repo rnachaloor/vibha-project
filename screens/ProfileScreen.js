@@ -57,7 +57,7 @@ const ProfileScreen = ({navigation}) => {
         <Text style={styles.titleText}>My Profile</Text>
         <View style={styles.smallSpacing}></View>
         <View style={styles.sec}>
-          <Icon name="person-circle-outline" color="black" size={150} />
+          <Icon name="person-circle" color="black" size={150} />
           <TouchableOpacity style={styles.change}>
             <Text>Change</Text>
           </TouchableOpacity>
