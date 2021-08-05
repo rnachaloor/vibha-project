@@ -30,6 +30,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import MoreDetailsTutorScreen from './screens/MoreDetailsTutorScreen';
 import MoreDetailsStuScreen from './screens/MoreDetailsStuScreen';
+import TimeChoiceScreen from './screens/TimeChoiceScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -44,6 +45,7 @@ const LoginStackScreen = () => {
       <Stack.Screen name="Details" component={SignUpDetailsScreen} />
       <Stack.Screen name="MoreDetails" component={MoreDetailsTutorScreen} />
       <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
+      <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
       <Stack.Screen name="Home" component={HomeNavigationScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />

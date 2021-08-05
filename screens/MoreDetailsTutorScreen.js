@@ -93,8 +93,8 @@ const MoreDetailsTutorScreen = ({navigation}) => {
         <TextInput style={styles.bgTextBox} multiline={true} />
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => navigation.navigate('Home')}
-          text="Sign Up"
+          onPress={() => navigation.navigate('TimeChoice')}
+          text="Next"
           style={{alignSelf: 'center'}}
         />
       </View>
