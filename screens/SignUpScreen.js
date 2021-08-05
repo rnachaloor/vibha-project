@@ -74,6 +74,7 @@ const SignUpScreen = ({navigation}) => {
         />
         <View style={styles.largeSpacing}></View>
         <View style={styles.largeSpacing}></View>
+        <View style={styles.largeSpacing}></View>
         <View
           style={{
             flexDirection: 'row',

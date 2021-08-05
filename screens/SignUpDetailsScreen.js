@@ -10,6 +10,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -29,6 +30,54 @@ const SignUpDetailsScreen = ({navigation}) => {
     storeData('grade', grade);
   };
 
+  const [isPressed, setIsPressed] = useState(false);
+  const [timesPressed, setTimesPressed] = useState(0);
+  const [style, setStyle] = useState(styles.icon1);
+
+  const changeStyle = () => {
+    if (timesPressed == 0) {
+      setIsPressed(true);
+      setTimesPressed(1);
+      setStyle(styles.icon1other);
+      setOtherStyle(styles.icon2);
+      setOtherTimesPressed(0);
+      setIsOtherPressed(false);
+    } else {
+      setIsPressed(false);
+      setTimesPressed(0);
+      setStyle(styles.icon1);
+    }
+  };
+
+  const [isOtherPressed, setIsOtherPressed] = useState(false);
+  const [otherTimesPressed, setOtherTimesPressed] = useState(0);
+  const [otherStyle, setOtherStyle] = useState(styles.icon2);
+
+  const changeOtherStyle = () => {
+    if (otherTimesPressed == 0) {
+      setIsOtherPressed(true);
+      setOtherTimesPressed(1);
+      setOtherStyle(styles.icon2other);
+      setStyle(styles.icon1);
+      setTimesPressed(0);
+      setIsPressed(false);
+    } else {
+      setIsOtherPressed(false);
+      setOtherTimesPressed(0);
+      setOtherStyle(styles.icon2);
+    }
+  };
+
+  const nextScreen = () => {
+    if (isPressed == true) {
+      navigation.navigate('MoreDetails');
+    } else if (isOtherPressed == true) {
+      navigation.navigate('MoreStuDetails');
+    } else {
+      Alert.alert('Error', 'Choose a role');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
@@ -38,17 +87,15 @@ const SignUpDetailsScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <View style={styles.cards}>
           <View style={styles.caption}>
-            <TouchableOpacity
-              style={(styles.icon, styles.icon1)}
-              onPress={() => setModalOpen(false)}>
+            <TouchableOpacity style={style} onPress={() => changeStyle()}>
               <Icon name="chalkboard-teacher" size={100} />
             </TouchableOpacity>
             <Text style={styles.text}>Tutor</Text>
           </View>
           <View style={styles.caption}>
             <TouchableOpacity
-              style={(styles.icon, styles.icon2)}
-              onPress={() => setModalOpen(false)}>
+              style={otherStyle}
+              onPress={() => changeOtherStyle()}>
               <Icon name="user-graduate" size={100} />
             </TouchableOpacity>
             <Text style={styles.text}>Student</Text>
@@ -68,8 +115,8 @@ const SignUpDetailsScreen = ({navigation}) => {
         />
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => navigation.navigate('Home')}
-          text="Sign Up"
+          onPress={() => nextScreen()}
+          text="Next"
           style={{alignSelf: 'center'}}
         />
       </View>
@@ -89,13 +136,29 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   icon1: {
-    borderColor: 'yellow',
+    borderColor: '#D5B537',
+    borderWidth: 2,
+    borderRadius: 15,
+    padding: 10,
+  },
+  icon1other: {
+    borderColor: '#464444',
+    backgroundColor: '#D5B537',
     borderWidth: 2,
     borderRadius: 15,
     padding: 10,
   },
   icon2: {
-    borderColor: 'yellow',
+    borderColor: '#D5B537',
+    borderWidth: 2,
+    borderRadius: 15,
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  icon2other: {
+    borderColor: '#464444',
+    backgroundColor: '#D5B537',
     borderWidth: 2,
     borderRadius: 15,
     padding: 10,

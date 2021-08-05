@@ -28,6 +28,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignUpDetailsScreen from './screens/SignUpDetailsScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import MoreDetailsTutorScreen from './screens/MoreDetailsTutorScreen';
+import MoreDetailsStuScreen from './screens/MoreDetailsStuScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -38,42 +40,11 @@ const LoginStackScreen = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen
-        name="Sign Up"
-        component={SignUpScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={SignUpDetailsScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Forgot Password"
-        component={ForgotPasswordScreen}
-        options={{
-          headerTitle: props => (
-            <Image
-              style={styles.headerImage}
-              source={require('./images/vlogo_white_bg.png')}
-            />
-          ),
-        }}
-      />
+      <Stack.Screen name="Sign Up" component={SignUpScreen} />
+      <Stack.Screen name="Details" component={SignUpDetailsScreen} />
+      <Stack.Screen name="MoreDetails" component={MoreDetailsTutorScreen} />
+      <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
+      <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
       <Stack.Screen name="Home" component={HomeNavigationScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
