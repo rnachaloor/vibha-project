@@ -10,7 +10,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -20,6 +20,7 @@ import {
   useColorScheme,
   View,
   Image,
+  Alert,
 } from 'react-native';
 
 import BlackButton from './components/BlackButton';
@@ -34,6 +35,8 @@ import TimeChoiceScreen from './screens/TimeChoiceScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+
+import messaging from '@react-native-firebase/messaging';
 
 const Stack = createStackNavigator();
 
@@ -53,7 +56,26 @@ const LoginStackScreen = () => {
   );
 };
 
+async function requestUserPermission() {
+  const authStatus = await messaging().requestPermission();
+  const enabled =
+    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+  if (enabled) {
+    console.log('Authorization Status: ', authStatus);
+  }
+}
+
 const App = () => {
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
     <NavigationContainer>
       <View style={styles.container}>
