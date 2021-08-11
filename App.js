@@ -36,8 +36,6 @@ import TimeChoiceScreen from './screens/TimeChoiceScreen';
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
-import messaging from '@react-native-firebase/messaging';
-
 const Stack = createStackNavigator();
 
 const LoginStackScreen = () => {
@@ -56,26 +54,7 @@ const LoginStackScreen = () => {
   );
 };
 
-async function requestUserPermission() {
-  const authStatus = await messaging().requestPermission();
-  const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-  if (enabled) {
-    console.log('Authorization Status: ', authStatus);
-  }
-}
-
 const App = () => {
-  useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    });
-
-    return unsubscribe;
-  }, []);
-
   return (
     <NavigationContainer>
       <View style={styles.container}>

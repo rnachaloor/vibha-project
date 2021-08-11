@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>446909967011-9blau7nftit9b2j98l6git0f9lq4cffr.apps.googleusercontent.com</string>
+	<string>850727403922-235s1ks5fq4nahjitk45iota81l0od4o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.446909967011-9blau7nftit9b2j98l6git0f9lq4cffr</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>446909967011-ugh4dk805rcot86u0ondfsuo9fcrjvp7.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.850727403922-235s1ks5fq4nahjitk45iota81l0od4o</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB_hdpcFhKI5kNF8BPM7N1vytuhT-NnQr4</string>
+	<string>AIzaSyC3sm6YhqYC5ka13vKF9bJ_lixz9aMwaHI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>446909967011</string>
+	<string>850727403922</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.vibha</string>
+	<string>com.vibha</string>
 	<key>PROJECT_ID</key>
-	<string>vibha-e4d08</string>
+	<string>vibha-tutoring</string>
 	<key>STORAGE_BUCKET</key>
-	<string>vibha-e4d08.appspot.com</string>
+	<string>vibha-tutoring.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:446909967011:ios:8fa69ca13d4769a1586d16</string>
+	<string>1:850727403922:ios:e57d02b6dd15cdc35bc14b</string>
 </dict>
 </plist>
