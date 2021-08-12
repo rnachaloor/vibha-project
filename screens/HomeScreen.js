@@ -29,16 +29,20 @@ import AboutScreen from './AboutScreen';
 import TutorListScreen from './TutorListScreen';
 import {DrawerContent} from './DrawerContent';
 
+import {LocalNotification} from '../services/LocalPushController';
+import RemotePushController from '../services/RemotePushController';
+
 const HomeScreen = ({navigation}) => {
+  const handleButtonPress = () => {
+    LocalNotification();
+  };
   return (
     <View style={styles.container}>
       <HomeHeader onPress={() => navigation.openDrawer()} />
       <View style={styles.otherbg}>
-        <Button
-          onPress={() => navigation.navigate('Notifications')}
-          title="testing"
-        />
+        <Button onPress={handleButtonPress} title="testing" />
       </View>
+      <RemotePushController />
     </View>
   );
 };
