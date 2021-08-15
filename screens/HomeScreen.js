@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -32,15 +32,38 @@ import {DrawerContent} from './DrawerContent';
 import {LocalNotification} from '../services/LocalPushController';
 import RemotePushController from '../services/RemotePushController';
 
+import inAppMessaging from '@react-native-firebase/in-app-messaging';
+
 const HomeScreen = ({navigation}) => {
   const handleButtonPress = () => {
     LocalNotification();
   };
+
+  const [canReceiveMessage, setCanReceiveMessage] = useState(true);
+
+  const allowToReceiveMessage = async isAllowed => {
+    setCanReceiveMessage(isAllowed);
+    // Allow/Disallow user to receive messages
+    await inAppMessaging().setMessagesDisplaySuppressed(isAllowed);
+  };
+
   return (
     <View style={styles.container}>
       <HomeHeader onPress={() => navigation.openDrawer()} />
       <View style={styles.otherbg}>
         <Button onPress={handleButtonPress} title="testing" />
+        <Text>
+          User Can Receive Message : {canReceiveMessage ? 'Yes' : 'No'}
+        </Text>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() => allowToReceiveMessage(!canReceiveMessage)}>
+          <Text>
+            {canReceiveMessage
+              ? 'Disable Receiving Message'
+              : 'Enable Receiving Message'}
+          </Text>
+        </TouchableOpacity>
       </View>
       <RemotePushController />
     </View>
