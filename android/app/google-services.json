@@ -29,6 +29,13 @@
             {
               "client_id": "850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "850727403922-235s1ks5fq4nahjitk45iota81l0od4o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vibha"
+              }
             }
           ]
         }
