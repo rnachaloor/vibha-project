@@ -29,6 +29,7 @@ import {
   AccessToken,
   GraphRequest,
   GraphRequestManager,
+  LoginManager,
 } from 'react-native-fbsdk';
 
 const LoginScreen = ({navigation}) => {
@@ -166,7 +167,7 @@ const LoginScreen = ({navigation}) => {
               padding: 10,
               right: 20,
             }}
-            onPress={this._signIn}>
+            onPress={this._signIn.bind(this)}>
             <Image
               style={styles.headerImage}
               source={require('../images/glogo.png')}
