@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
+
+import {AuthContext} from '../AuthProvider';
 
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 
@@ -17,6 +19,8 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export function DrawerContent(props) {
+  const {logout} = useContext(AuthContext);
+
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
@@ -142,7 +146,7 @@ export function DrawerContent(props) {
             <Icon name="log-out-outline" color={color} size={size} />
           )}
           label="Sign Out"
-          onPress={() => {}}
+          onPress={() => logout()}
         />
       </Drawer.Section>
     </View>

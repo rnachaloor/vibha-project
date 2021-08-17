@@ -38,7 +38,7 @@ import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
-const LoginStackScreen = () => {
+export const LoginStackScreen = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -48,7 +48,19 @@ const LoginStackScreen = () => {
       <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
       <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
+    </Stack.Navigator>
+  );
+};
+
+export const HomeStackScreen = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={HomeNavigationScreen} />
+      <Stack.Screen name="Details" component={SignUpDetailsScreen} />
+      <Stack.Screen name="MoreDetails" component={MoreDetailsTutorScreen} />
+      <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
+      <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
+      <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
@@ -56,11 +68,9 @@ const LoginStackScreen = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <LoginStackScreen />
-      </View>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <HomeStackScreen />
+    </View>
   );
 };
 

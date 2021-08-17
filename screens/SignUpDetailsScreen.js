@@ -25,7 +25,7 @@ const SignUpDetailsScreen = ({navigation}) => {
   const [age, setAge] = useState(0);
   const [grade, setGrade] = useState('');
 
-  const saveData = () => {
+  const saveData = async () => {
     storeData('age', age);
     storeData('grade', grade);
   };

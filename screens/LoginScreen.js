@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -15,6 +15,7 @@ import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import WhiteButton from '../components/WhiteButton';
 import Header from '../components/Header';
+import {AuthContext} from '../AuthProvider';
 
 import {Checkbox} from 'react-native-paper';
 
@@ -33,11 +34,15 @@ import {
 } from 'react-native-fbsdk';
 
 const LoginScreen = ({navigation}) => {
+  const {login} = useContext(AuthContext);
   const [checked, setChecked] = useState(false);
   const [loggedIn, setloggedIn] = useState(false);
   const [userInfo, setuserInfo] = useState([]);
 
   const [otherUserInfo, setotherUserInfo] = useState([]);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   _signIn = async () => {
     try {
@@ -46,26 +51,21 @@ const LoginScreen = ({navigation}) => {
       setloggedIn(true);
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
         alert('Cancel');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         alert('Signin in progress');
-        // operation (f.e. sign in) is in progress already
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         alert('PLAY_SERVICES_NOT_AVAILABLE');
-        // play services not available or outdated
       } else {
-        // some other error happened
       }
     }
   };
 
   useEffect(() => {
     GoogleSignin.configure({
-      scopes: ['email'], // what API you want to access on behalf of the user, default is email and profile
+      scopes: ['email'],
       webClientId:
-        '850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+        '850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com',
     });
   }, []);
 
@@ -107,7 +107,6 @@ const LoginScreen = ({navigation}) => {
   };
 
   loginWithFacebook = async () => {
-    // Attempt a login using the Facebook login dialog asking for default permissions.
     LoginManager.logInWithPermissions(['public_profile']).then(
       login => {
         if (login.isCancelled) {
@@ -132,9 +131,20 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.smallSpacing}></View>
         <Text style={styles.titleText}>Log In</Text>
         <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Username" />
+        <GoldTextBox
+          style={[styles.leftAlignment]}
+          text="Email"
+          textContentType="emailAddress"
+          onChangeText={value => setEmail(value)}
+        />
         <View style={styles.smallSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Password" />
+        <GoldTextBox
+          style={[styles.leftAlignment]}
+          text="Password"
+          secureTextEntry={true}
+          textContentType="password"
+          onChangeText={value => setPassword(value)}
+        />
         <TouchableOpacity style={{alignSelf: 'flex-end'}}>
           <Text
             style={styles.forgot}
@@ -152,7 +162,11 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.label}>Remember me</Text>
         </View>
         <View style={styles.smallSpacing}></View>
-        <BlackButton text="Log In" style={{alignSelf: 'center'}} />
+        <BlackButton
+          text="Log In"
+          style={{alignSelf: 'center'}}
+          onPress={() => login(email, password)}
+        />
         <View style={styles.smallSpacing}></View>
         <Text style={{alignSelf: 'center', fontSize: 20}}>--- OR ---</Text>
         <Text style={{alignSelf: 'center', fontSize: 14, paddingTop: 10}}>
@@ -167,7 +181,7 @@ const LoginScreen = ({navigation}) => {
               padding: 10,
               right: 20,
             }}
-            onPress={this._signIn.bind(this)}>
+            onPress={() => _signIn()}>
             <Image
               style={styles.headerImage}
               source={require('../images/glogo.png')}
@@ -180,7 +194,7 @@ const LoginScreen = ({navigation}) => {
               padding: 10,
               left: 20,
             }}
-            onPress={this.loginWithFacebook}>
+            onPress={() => loginWithFacebook()}>
             <Image
               style={styles.headerImage}
               source={require('../images/flogo.png')}

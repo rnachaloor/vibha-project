@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,8 +16,28 @@ import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import Header from '../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {AuthContext} from '../AuthProvider';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const MoreDetailsStuScreen = ({navigation}) => {
+  const {register} = useContext(AuthContext);
+
+  const getEmail = async () => {
+    const email = await getData('email');
+    return email;
+  };
+
+  const getPass = async () => {
+    const password = await getData('password');
+    return password;
+  };
+
+  const submit = async () => {
+    const email = await getData('email');
+    const password = await getData('password');
+    register(email, password);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
@@ -33,7 +53,7 @@ const MoreDetailsStuScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => submit()}
           text="Sign Up"
           style={{alignSelf: 'center'}}
         />
