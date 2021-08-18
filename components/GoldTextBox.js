@@ -29,7 +29,7 @@ const GoldTextBox = props => {
 const styles = StyleSheet.create({
   bgTextBox: {
     backgroundColor: '#D5B537',
-    borderRadius: 50,
+    borderRadius: 15,
     paddingLeft: 10,
     width: 350,
     ...Platform.select({

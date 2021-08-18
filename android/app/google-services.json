@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "850727403922-ir0mebrrh0t7aohr8jjks8a7lrn9689e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vibha",
+            "certificate_hash": "92dddd4df0b80760ac8316c1c71e49ca62873a54"
+          }
+        },
+        {
           "client_id": "850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com",
           "client_type": 3
         }

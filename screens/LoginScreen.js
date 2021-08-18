@@ -33,96 +33,14 @@ import {
   LoginManager,
 } from 'react-native-fbsdk';
 
-const LoginScreen = ({navigation}) => {
-  const {login} = useContext(AuthContext);
-  const [checked, setChecked] = useState(false);
-  const [loggedIn, setloggedIn] = useState(false);
-  const [userInfo, setuserInfo] = useState([]);
+import auth from '@react-native-firebase/auth';
 
-  const [otherUserInfo, setotherUserInfo] = useState([]);
+const LoginScreen = ({navigation}) => {
+  const {login, googleLogin, facebookLogin} = useContext(AuthContext);
+  const [checked, setChecked] = useState(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  _signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const {accessToken, idToken} = await GoogleSignin.signIn();
-      setloggedIn(true);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        alert('Cancel');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Signin in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        alert('PLAY_SERVICES_NOT_AVAILABLE');
-      } else {
-      }
-    }
-  };
-
-  useEffect(() => {
-    GoogleSignin.configure({
-      scopes: ['email'],
-      webClientId:
-        '850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com',
-    });
-  }, []);
-
-  signOut = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      setloggedIn(false);
-      setuserInfo([]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  logoutWithFacebook = async () => {
-    LoginManager.logOut();
-    setotherUserInfo([]);
-  };
-
-  getInfoFromToken = async token => {
-    const PROFILE_REQUEST_PARAMS = {
-      fields: {
-        string: 'id,name,first_name,last_name',
-      },
-    };
-    const profileRequest = new GraphRequest(
-      '/me',
-      {token, parameters: PROFILE_REQUEST_PARAMS},
-      (error, user) => {
-        if (error) {
-          console.log('login info has error: ' + error);
-        } else {
-          setotherUserInfo([user]);
-          console.log('result:', user);
-        }
-      },
-    );
-    new GraphRequestManager().addRequest(profileRequest).start();
-  };
-
-  loginWithFacebook = async () => {
-    LoginManager.logInWithPermissions(['public_profile']).then(
-      login => {
-        if (login.isCancelled) {
-          console.log('Login cancelled');
-        } else {
-          AccessToken.getCurrentAccessToken().then(data => {
-            const accessToken = data.accessToken.toString();
-            this.getInfoFromToken(accessToken);
-          });
-        }
-      },
-      error => {
-        console.log('Login fail with error: ' + error);
-      },
-    );
-  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -181,7 +99,7 @@ const LoginScreen = ({navigation}) => {
               padding: 10,
               right: 20,
             }}
-            onPress={() => _signIn()}>
+            onPress={() => googleLogin()}>
             <Image
               style={styles.headerImage}
               source={require('../images/glogo.png')}
@@ -194,7 +112,7 @@ const LoginScreen = ({navigation}) => {
               padding: 10,
               left: 20,
             }}
-            onPress={() => loginWithFacebook()}>
+            onPress={() => facebookLogin()}>
             <Image
               style={styles.headerImage}
               source={require('../images/flogo.png')}
