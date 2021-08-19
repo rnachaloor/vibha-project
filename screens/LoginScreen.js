@@ -41,6 +41,13 @@ const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '446909967011-baj8et3ka3epcq9l761a1pdloq28fke5.apps.googleusercontent.com',
+    });
+  });
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />

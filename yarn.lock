@@ -1268,6 +1268,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-12.6.0.tgz#3e743d04513366a141724cbdebb8db4e35a24df8"
   integrity sha512-9NRB1ld+qe+TR33mqOGRyLZa4UE5sC8pLZ9pqCvCwpekCB6+SbUNnxeTxKvvvJzfrk9ZmLG+kHY4ONS/yECEVg==
 
+"@react-native-firebase/firestore@^12.7.0":
+  version "12.7.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-12.7.0.tgz#22368f1ad68c0b03620f38a26b1b6d8621568584"
+  integrity sha512-90U4i5Wrk672s4+WnQPOd0wgFQJ2e4zTYTJkxnVPrdgkiofmLCOkW1uJi1Ja5aWbU7Xtz6ytHk+CjjkttT/llA==
+
 "@react-native-firebase/in-app-messaging@^12.5.0":
   version "12.5.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/in-app-messaging/-/in-app-messaging-12.5.0.tgz#abd423e146123ff2dc27495b926a82148c29ef50"

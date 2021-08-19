@@ -69,6 +69,8 @@ const SignUpDetailsScreen = ({navigation}) => {
   };
 
   const nextScreen = () => {
+    saveData();
+
     if (isPressed == true) {
       navigation.navigate('MoreDetails');
     } else if (isOtherPressed == true) {

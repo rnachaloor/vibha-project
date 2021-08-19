@@ -67,12 +67,6 @@ export const HomeStackScreen = () => {
 };
 
 const App = () => {
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: '850727403922-cn1ic5i19tillvkahnkt12jiie4sdq07.apps.googleusercontent.com',
-    })
-  });
-
   return (
     <View style={styles.container}>
       <HomeStackScreen />

@@ -18,12 +18,14 @@ import {useState} from 'react';
 import {storeData, getData} from '../functions/AsyncFunctions';
 
 const SignUpScreen = ({navigation}) => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const saveInfo = () => {
+    storeData('name', name);
     storeData('username', username);
     storeData('email', email);
     storeData('password', password);
@@ -38,6 +40,12 @@ const SignUpScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>
         <View style={styles.largeSpacing}></View>
+        <GoldTextBox
+          onChangeText={value => setName(value)}
+          style={[styles.leftAlignment]}
+          text="Name"
+        />
+        <View style={styles.smallSpacing}></View>
         <GoldTextBox
           onChangeText={value => setUsername(value)}
           style={[styles.leftAlignment]}
@@ -67,6 +75,7 @@ const SignUpScreen = ({navigation}) => {
           onChangeText={value => setConfirmPassword(value)}
         />
         <View style={styles.largeSpacing}></View>
+        <View style={styles.smallSpacing}></View>
         <BlackButton
           onPress={() => saveInfo()}
           text="Next"
