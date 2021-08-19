@@ -26,7 +26,6 @@ import {
 } from '@react-native-google-signin/google-signin';
 
 import {
-  LoginButton,
   AccessToken,
   GraphRequest,
   GraphRequestManager,

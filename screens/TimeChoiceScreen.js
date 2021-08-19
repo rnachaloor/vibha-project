@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -15,7 +15,8 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import Header from '../components/Header';
-
+import {AuthContext} from '../AuthProvider';
+import {storeData, getData} from '../functions/AsyncFunctions';
 import {Checkbox} from 'react-native-paper';
 
 const TimeChoiceScreen = ({navigation}) => {
@@ -63,6 +64,24 @@ const TimeChoiceScreen = ({navigation}) => {
   const [f6, setF6] = useState(false);
   const [f7, setF7] = useState(false);
   const [f8, setF8] = useState(false);
+
+  const {register} = useContext(AuthContext);
+
+  const getEmail = async () => {
+    const email = await getData('email');
+    return email;
+  };
+
+  const getPass = async () => {
+    const password = await getData('password');
+    return password;
+  };
+
+  const submit = async () => {
+    const email = await getData('email');
+    const password = await getData('password');
+    register(email, password);
+  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -402,7 +421,7 @@ const TimeChoiceScreen = ({navigation}) => {
         </View>
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => submit()}
           text="Sign Up"
           style={{alignSelf: 'center'}}
         />

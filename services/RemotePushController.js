@@ -3,10 +3,10 @@ import {Platform} from 'react-native';
 import PushNotification from 'react-native-push-notification';
 const RemotePushController = () => {
   PushNotification.configure({
-    onRegister: function (token: any) {
+    onRegister: function (token) {
       console.log('TOKEN:', token);
     },
-    onNotification: function (notification: any) {
+    onNotification: function (notification) {
       console.log('REMOTE NOTIFICATION:', notification);
       // notification.finish(PushNotificationIOS.FetchResult.NoData);
     },
@@ -27,9 +27,9 @@ const RemotePushController = () => {
   );
 
   Platform.buildAndroidNotification = (
-    id: number,
-    title: string,
-    message: string,
+    id,
+    title,
+    message,
     data = {},
     options = {},
   ) => {
@@ -72,16 +72,16 @@ const RemotePushController = () => {
   };
 
   Platform.showNotification = (
-    id: number,
-    title: string,
-    message: string,
+    id,
+    title,
+    message,
     data = {},
     options = {},
-    date: Date,
+    date,
   ) => {
     PushNotification.localNotificationSchedule({
       //Android
-      ...this.buildAdroidNotification(id, title, message, data, options),
+      ...this.buildAndroidNotification(id, title, message, data, options),
 
       // iOS
       //  ...this.buildIOSNotification(id, title, message, data, options),
