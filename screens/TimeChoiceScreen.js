@@ -18,6 +18,7 @@ import Header from '../components/Header';
 import {AuthContext} from '../AuthProvider';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import {Checkbox} from 'react-native-paper';
+import firestore from '@react-native-firebase/firestore';
 
 const TimeChoiceScreen = ({navigation}) => {
   const [m1, setM1] = useState(false);
@@ -78,8 +79,49 @@ const TimeChoiceScreen = ({navigation}) => {
   };
 
   const submit = async () => {
+    let final = '';
+    let dayinit = ['m', 'tu', 'w', 'th', 'f'];
+    let nums = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    for (let i = 0; i < 5; i++) {
+      for (let k = 1; k < 9; k++) {
+        let option = dayinit[i] + nums[k];
+        if (option == true) {
+          final = final + option + ', ';
+        }
+      }
+    }
+
+    storeData('times', final);
+
     const email = await getData('email');
     const password = await getData('password');
+    const name = await getData('name');
+    const username = await getData('username');
+    const age = await getData('age');
+    const grade = await getData('grade');
+    const subjects = await getData('subjects');
+    const description = await getData('description');
+    const lowgrade = await getData('lowgrade');
+    const highgrade = await getData('highgrade');
+    const times = await getData('times');
+    firestore()
+      .collection('tutors')
+      .add({
+        name: name,
+        username: username,
+        password: password,
+        email: email,
+        age: age,
+        grade: grade,
+        subjects: subjects,
+        description: description,
+        lowGrade: lowgrade,
+        highGrade: highgrade,
+        times: times,
+      })
+      .then(() => {
+        console.log('SUCCESS');
+      });
     register(email, password);
   };
 

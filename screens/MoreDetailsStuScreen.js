@@ -18,9 +18,11 @@ import Header from '../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {AuthContext} from '../AuthProvider';
 import {storeData, getData} from '../functions/AsyncFunctions';
+import firestore from '@react-native-firebase/firestore';
 
 const MoreDetailsStuScreen = ({navigation}) => {
   const {register} = useContext(AuthContext);
+  const [subjects, setSubjects] = useState('');
 
   const getEmail = async () => {
     const email = await getData('email');
@@ -35,6 +37,25 @@ const MoreDetailsStuScreen = ({navigation}) => {
   const submit = async () => {
     const email = await getData('email');
     const password = await getData('password');
+    const name = await getData('name');
+    const username = await getData('username');
+    const age = await getData('age');
+    const grade = await getData('grade');
+    const subjects = await getData('subjects');
+    firestore()
+      .collection('students')
+      .add({
+        name: name,
+        username: username,
+        password: password,
+        email: email,
+        age: age,
+        grade: grade,
+        subjects: subjects,
+      })
+      .then(() => {
+        console.log('SUCCESS');
+      });
     register(email, password);
   };
 
@@ -49,11 +70,15 @@ const MoreDetailsStuScreen = ({navigation}) => {
         <GoldTextBox
           style={[styles.leftAlignment]}
           text="Subjects Help Needed"
+          onChangeText={value => setSubjects(value)}
         />
         <View style={styles.largeSpacing}></View>
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => submit()}
+          onPress={() => {
+            storeData('subjects', subjects);
+            submit();
+          }}
           text="Sign Up"
           style={{alignSelf: 'center'}}
         />

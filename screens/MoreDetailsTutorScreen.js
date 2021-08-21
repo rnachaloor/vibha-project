@@ -16,6 +16,7 @@ import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import Header from '../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const MoreDetailsTutorScreen = ({navigation}) => {
   const [open, setOpen] = useState(false);
@@ -46,6 +47,18 @@ const MoreDetailsTutorScreen = ({navigation}) => {
     {label: '8th', value: 'eight'},
   ]);
 
+  const [lowGrade, setLowGrade] = useState('');
+  const [highGrade, setHighGrade] = useState('');
+  const [subjects, setSubjects] = useState('');
+  const [description, setDescription] = useState('');
+
+  const saveData = async () => {
+    storeData('lowgrade', lowGrade);
+    storeData('highgrade', highGrade);
+    storeData('subjects', subjects);
+    storeData('description', description);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
@@ -72,6 +85,7 @@ const MoreDetailsTutorScreen = ({navigation}) => {
             dropDownContainerStyle={{
               width: 150,
             }}
+            onChangeValue={value => setLowGrade(value)}
           />
           <DropDownPicker
             style={styles.otherdropDown}
@@ -84,16 +98,28 @@ const MoreDetailsTutorScreen = ({navigation}) => {
             dropDownContainerStyle={{
               width: 150,
             }}
+            onChangeValue={value => setHighGrade(value)}
           />
         </View>
         <View style={styles.largeSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Teachable Subjects" />
+        <GoldTextBox
+          style={[styles.leftAlignment]}
+          text="Teachable Subjects"
+          onChangeText={value => setSubjects(value)}
+        />
         <View style={styles.largeSpacing}></View>
         <Text style={styles.text}>Description of Yourself</Text>
-        <TextInput style={styles.bgTextBox} multiline={true} />
+        <TextInput
+          style={styles.bgTextBox}
+          multiline={true}
+          onChangeText={value => setDescription(value)}
+        />
         <View style={styles.largeSpacing}></View>
         <BlackButton
-          onPress={() => navigation.navigate('TimeChoice')}
+          onPress={() => {
+            saveData();
+            navigation.navigate('TimeChoice');
+          }}
           text="Next"
           style={{alignSelf: 'center'}}
         />

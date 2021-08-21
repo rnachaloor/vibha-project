@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {AuthContext} from '../AuthProvider';
@@ -17,9 +17,20 @@ import {
 } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import firestore from '@react-native-firebase/firestore';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 export function DrawerContent(props) {
   const {logout} = useContext(AuthContext);
+
+  const name = firestore()
+    .collection('tutors')
+    .doc('J7k0PaZpsbxdgOvQGHsg')
+    .get();
+  const username = firestore()
+    .collection('tutors')
+    .doc('J7k0PaZpsbxdgOvQGHsg')
+    .get();
 
   return (
     <View style={{flex: 1}}>
@@ -36,8 +47,8 @@ export function DrawerContent(props) {
                   size={50}
                 />
                 <View style={{flexDirection: 'column', marginLeft: 15}}>
-                  <Title style={styles.title}>Name</Title>
-                  <Caption style={styles.caption}>username</Caption>
+                  <Text style={styles.title}>{JSON.stringify(name)}</Text>
+                  <Text style={styles.caption}>{JSON.stringify(username)}</Text>
                 </View>
               </View>
             </TouchableOpacity>
