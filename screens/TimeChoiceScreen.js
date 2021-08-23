@@ -104,6 +104,7 @@ const TimeChoiceScreen = ({navigation}) => {
     const lowgrade = await getData('lowgrade');
     const highgrade = await getData('highgrade');
     const times = await getData('times');
+    register(email, password);
     firestore()
       .collection('tutors')
       .add({
@@ -122,7 +123,6 @@ const TimeChoiceScreen = ({navigation}) => {
       .then(() => {
         console.log('SUCCESS');
       });
-    register(email, password);
   };
 
   return (
