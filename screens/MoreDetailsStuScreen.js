@@ -44,7 +44,8 @@ const MoreDetailsStuScreen = ({navigation}) => {
     const subjects = await getData('subjects');
     firestore()
       .collection('students')
-      .add({
+      .doc(username)
+      .set({
         name: name,
         username: username,
         password: password,

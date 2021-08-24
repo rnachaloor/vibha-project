@@ -18,18 +18,19 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import firestore from '@react-native-firebase/firestore';
+import {storeData, getData} from '../functions/AsyncFunctions';
+import {user, opt} from '../functions/FirestoreFunctions';
 
 export function DrawerContent(props) {
   const {logout} = useContext(AuthContext);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
-  const ref = firestore().collection('students');
 
   useEffect(() => {
     firestore()
-      .collection('students')
-      .doc('NGJOSbEd7g42pfaNX618')
+      .collection(global.opt)
+      .doc(global.user)
       .get()
       .then(documentSnapshot => {
         if (documentSnapshot.exists) {

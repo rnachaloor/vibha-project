@@ -28,6 +28,11 @@ const SignUpDetailsScreen = ({navigation}) => {
   const saveData = async () => {
     storeData('age', age);
     storeData('grade', grade);
+    if (isPressed == true) {
+      storeData('choice', 'tutor');
+    } else {
+      storeData('choice', 'student');
+    }
   };
 
   const [isPressed, setIsPressed] = useState(false);

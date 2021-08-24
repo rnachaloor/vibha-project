@@ -4,14 +4,16 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {AuthContext} from '../AuthProvider';
 
 import firestore from '@react-native-firebase/firestore';
+import {storeData, getData} from './AsyncFunctions';
 
-const [name, setName] = useState('');
+export const getUserInfo = async () => {
+  let user = await getData('email');
+  let opt = await getData('choice');
+  global.user = user;
+  global.opt = opt;
+  test();
+};
 
-export const getInfo = async (person, docu, info) => {
-  const subscriber = firestore()
-    .collection(person)
-    .doc(docu)
-    .onSnapshot(documentSnapshot => {
-      console.log('User data: ', documentSnapshot.data());
-    });
+const test = () => {
+  let nice = opt;
 };

@@ -33,6 +33,7 @@ import {
 } from 'react-native-fbsdk';
 
 import auth from '@react-native-firebase/auth';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const LoginScreen = ({navigation}) => {
   const {login, googleLogin, facebookLogin} = useContext(AuthContext);
@@ -89,7 +90,10 @@ const LoginScreen = ({navigation}) => {
         <BlackButton
           text="Log In"
           style={{alignSelf: 'center'}}
-          onPress={() => login(email, password)}
+          onPress={() => {
+            storeData('email', email);
+            login(email, password);
+          }}
         />
         <View style={styles.smallSpacing}></View>
         <Text style={{alignSelf: 'center', fontSize: 20}}>--- OR ---</Text>

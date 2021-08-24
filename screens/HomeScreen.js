@@ -33,6 +33,8 @@ import {LocalNotification} from '../services/LocalPushController';
 import RemotePushController from '../services/RemotePushController';
 
 import inAppMessaging from '@react-native-firebase/in-app-messaging';
+import {storeData, getData} from '../functions/AsyncFunctions';
+import {getUserInfo} from '../functions/FirestoreFunctions';
 
 const HomeScreen = ({navigation}) => {
   const handleButtonPress = () => {
@@ -49,7 +51,12 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <HomeHeader onPress={() => navigation.openDrawer()} />
+      <HomeHeader
+        onPress={() => {
+          getUserInfo();
+          navigation.openDrawer();
+        }}
+      />
       <View style={styles.otherbg}>
         <Button onPress={handleButtonPress} title="testing" />
         <Text>
@@ -77,15 +84,63 @@ const HomeNavigationScreen = ({navigation}) => {
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={props => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="About" component={AboutScreen} />
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="About"
+        component={AboutScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
       {/*<Drawer.Screen name="Notifications" component={NotificationsScreen} />*/}
-      <Drawer.Screen name="Tutor List" component={TutorListScreen} />
-      <Drawer.Screen name="Calendar" component={CalendarScreen} />
-      <Drawer.Screen name="Records" component={RecordScreen} />
-      <Drawer.Screen name="Sponsors" component={SponsorScreen} />
-      <Drawer.Screen name="Contact" component={ContactScreen} />
-      <Drawer.Screen name="Feedback" component={FeedbackScreen} />
+      <Drawer.Screen
+        name="Tutor List"
+        component={TutorListScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Calendar"
+        component={CalendarScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Records"
+        component={RecordScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Sponsors"
+        component={SponsorScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Feedback"
+        component={FeedbackScreen}
+        options={{
+          swipeEnabled: false,
+        }}
+      />
     </Drawer.Navigator>
   );
 };
