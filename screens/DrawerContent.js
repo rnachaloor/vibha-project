@@ -21,23 +21,45 @@ import firestore from '@react-native-firebase/firestore';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import {user, opt} from '../functions/FirestoreFunctions';
 
-export function DrawerContent(props) {
+export const DrawerContent = props => {
   const {logout} = useContext(AuthContext);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
+  const [type, setType] = useState('');
+  const [mail, setMail] = useState('');
+
+  const load = async () => {
+    setType(await getData('choice'));
+    setMail(await getData('email'));
+  };
+
+  load();
 
   useEffect(() => {
-    firestore()
-      .collection(global.opt)
-      .doc(global.user)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setName(documentSnapshot.data().name);
-          setUsername(documentSnapshot.data().username);
-        }
-      });
+    if (type == 'tutor') {
+      firestore()
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setName(documentSnapshot.data().name);
+            setUsername(documentSnapshot.data().username);
+          }
+        });
+    } else {
+      firestore()
+        .collection('students')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setName(documentSnapshot.data().name);
+            setUsername(documentSnapshot.data().username);
+          }
+        });
+    }
   });
 
   return (
@@ -170,7 +192,7 @@ export function DrawerContent(props) {
       </Drawer.Section>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   drawerContent: {

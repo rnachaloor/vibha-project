@@ -24,9 +24,21 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import OtherInfoScreen from './OtherInfoScreen';
 import SettingsScreen from './SettingsScreen';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const ProfileScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const load = async () => {
+    setUsername(await getData('username'));
+    setName(await getData('name'));
+    setEmail(await getData('email'));
+  };
+
+  load();
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -63,7 +75,7 @@ const ProfileScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.insidebg}>
-          <Text style={styles.forgot}>Username:</Text>
+          <Text style={styles.forgot}>{'Username: ' + username}</Text>
           <View style={styles.direction}>
             <Text style={styles.forgot}>Password:</Text>
             <View style={styles.another}>
@@ -75,12 +87,11 @@ const ProfileScreen = ({navigation}) => {
             </View>
           </View>
 
-          <Text style={styles.forgot}>Name:</Text>
-          <Text style={styles.forgot}>Email:</Text>
-          <Text style={styles.forgot}>Phone #:</Text>
+          <Text style={styles.forgot}>{'Name: ' + name}</Text>
+          <Text style={styles.forgot}>{'Email: ' + email}</Text>
 
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Save Changes</Text>
+            <Text style={styles.text}>Make Changes</Text>
           </TouchableOpacity>
         </View>
       </View>

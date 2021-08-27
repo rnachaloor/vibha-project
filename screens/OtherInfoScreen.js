@@ -19,9 +19,22 @@ import ProfileHeader from '../components/ProfileHeader';
 import DropDownMenu from '../components/DropDownMenu';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const OtherInfoScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [age, setAge] = useState('');
+  const [grade, setGrade] = useState('');
+  const [subjects, setSubjects] = useState('');
+
+  const load = async () => {
+    setAge(await getData('age'));
+    setGrade(await getData('grade'));
+    setSubjects(await getData('subjects'));
+  };
+
+  load();
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -48,9 +61,9 @@ const OtherInfoScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.insidebg}>
-          <Text style={styles.forgot}>Age:</Text>
-          <Text style={styles.forgot}>Grade:</Text>
-          <Text style={styles.forgot}>Subjects:</Text>
+          <Text style={styles.forgot}>{'Age: ' + age}</Text>
+          <Text style={styles.forgot}>{'Grade: ' + grade}</Text>
+          <Text style={styles.forgot}>{'Subjects: ' + subjects}</Text>
           <Text style={styles.forgot}># of Sessions:</Text>
 
           <View style={styles.direction}>
@@ -65,7 +78,7 @@ const OtherInfoScreen = ({navigation}) => {
           </View>
 
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Save Changes</Text>
+            <Text style={styles.text}>Make Changes</Text>
           </TouchableOpacity>
         </View>
       </View>

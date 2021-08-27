@@ -15,6 +15,7 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import HomeHeader from '../components/HomeHeader';
+import TutorDescription from '../components/TutorDescription';
 import SearchBar from '../components/SearchBar';
 
 const TutorListScreen = ({navigation}) => {
@@ -32,6 +33,7 @@ const TutorListScreen = ({navigation}) => {
         <Text style={styles.titleText}>Tutor List</Text>
         <View style={styles.largeSpacing}></View>
         <SearchBar />
+        <TutorDescription />
       </View>
     </SafeAreaView>
   );
