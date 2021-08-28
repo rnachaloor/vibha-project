@@ -20,15 +20,11 @@ import HomeHeader from '../components/HomeHeader';
 import TutorDescription from '../components/TutorDescription';
 import SearchBar from '../components/SearchBar';
 import firestore from '@react-native-firebase/firestore';
+import {createFilter} from 'react-native-search-filter';
 
 const TutorListScreen = ({navigation}) => {
-  const [search, setSearch] = useState(' ');
-  const [loading, setLoading] = useState(true);
   const [tutors, setTutors] = useState([]);
-
-  const newSearch = search => {
-    setSearch(search);
-  };
+  //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = firestore()
@@ -39,26 +35,31 @@ const TutorListScreen = ({navigation}) => {
         querySnapshot.forEach(documentSnapshot => {
           tutors.push({
             key: documentSnapshot.id,
-            name: documentSnapshot.name,
+            name: documentSnapshot.data().name,
+            subjects: documentSnapshot.data().subjects,
+            age: documentSnapshot.data().age,
+            descr: documentSnapshot.data().description,
           });
+          //console.log(tutors);
         });
 
         setTutors(tutors);
-        setLoading(false);
+        //setLoading(false);
       });
     return () => subscriber();
   }, []);
 
-  if (loading) {
-    return <ActivityIndicator />;
-  }
+  //if (loading) {
+  //  return <ActivityIndicator />;
+  //}
+  const KEYS_TO_FILTERS = ['name', 'subjects'];
+  const [search, setSearch] = useState('');
 
-  const [items, setItems] = useState([
-    {name: 'test', subjects: 'math', age: '12', descr: 'hehehe'},
-    {name: 'test1', subjects: 'math1', age: '13', descr: 'hehehe1'},
-    {name: 'test1', subjects: 'math1', age: '13', descr: 'hehehe1'},
-  ]);
+  const newSearch = search => {
+    setSearch(search);
+  };
 
+  const filteredTutors = tutors.filter(createFilter(search, KEYS_TO_FILTERS));
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <HomeHeader onPress={() => navigation.openDrawer()} />
@@ -66,20 +67,19 @@ const TutorListScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Tutor List</Text>
         <View style={styles.largeSpacing}></View>
-        <SearchBar />
+        <SearchBar
+          placeholder="Search here ..."
+          changeText={e => setSearch(e.nativeEvent.text)}
+        />
         <FlatList
-          data={tutors}
+          data={filteredTutors}
           renderItem={({item}) => (
-            <View
-              style={{
-                height: 50,
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text>{item.id}</Text>
-              <Text>{item.name}</Text>
-            </View>
+            <TutorDescription
+              name={item.name}
+              subjects={item.subjects}
+              age={item.age}
+              descr={item.descr}
+            />
           )}
         />
       </View>

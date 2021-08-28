@@ -35,6 +35,7 @@ import RemotePushController from '../services/RemotePushController';
 import inAppMessaging from '@react-native-firebase/in-app-messaging';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import {getUserInfo} from '../functions/FirestoreFunctions';
+import messaging from '@react-native-firebase/messaging';
 
 const HomeScreen = ({navigation}) => {
   const handleButtonPress = () => {
@@ -48,6 +49,14 @@ const HomeScreen = ({navigation}) => {
     // Allow/Disallow user to receive messages
     await inAppMessaging().setMessagesDisplaySuppressed(isAllowed);
   };
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <View style={styles.container}>

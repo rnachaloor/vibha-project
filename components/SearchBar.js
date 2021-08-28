@@ -7,11 +7,14 @@ import {
   TextInput,
 } from 'react-native';
 
-const SearchBar = () => {
+const SearchBar = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bar}>
-        <TextInput placeholder="Search Here ..." />
+        <TextInput
+          placeholder={props.placeholder}
+          onChange={props.changeText}
+        />
       </View>
     </SafeAreaView>
   );
