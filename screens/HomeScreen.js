@@ -18,7 +18,7 @@ import WhiteButton from '../components/WhiteButton';
 import HomeHeader from '../components/HomeHeader';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 import FeedbackScreen from './FeedbackScreen';
 import ContactScreen from './ContactScreen';
@@ -49,14 +49,6 @@ const HomeScreen = ({navigation}) => {
     // Allow/Disallow user to receive messages
     await inAppMessaging().setMessagesDisplaySuppressed(isAllowed);
   };
-
-  useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    });
-
-    return unsubscribe;
-  }, []);
 
   return (
     <View style={styles.container}>
