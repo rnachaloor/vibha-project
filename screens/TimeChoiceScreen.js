@@ -107,7 +107,7 @@ const TimeChoiceScreen = ({navigation}) => {
     register(email, password);
     firestore()
       .collection('tutors')
-      .doc(username)
+      .doc(email)
       .set({
         name: name,
         username: username,

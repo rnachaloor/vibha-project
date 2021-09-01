@@ -35,6 +35,7 @@ import TimeChoiceScreen from './screens/TimeChoiceScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import messaging from '@react-native-firebase/messaging';
 
 const Stack = createStackNavigator();
 
@@ -67,6 +68,13 @@ export const HomeStackScreen = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
   return (
     <View style={styles.container}>
       <HomeStackScreen />
