@@ -54,16 +54,13 @@ const OtherInfoScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>My Profile</Text>
         <View style={styles.smallSpacing}></View>
-        <View style={styles.sec}>
-          <Icon name="person-circle" color="black" size={150} />
-          <TouchableOpacity style={styles.change}>
-            <Text>Change</Text>
-          </TouchableOpacity>
-        </View>
         <View style={styles.insidebg}>
           <Text style={styles.forgot}>{'Age: ' + age}</Text>
+          <View style={styles.smallSpacing}></View>
           <Text style={styles.forgot}>{'Grade: ' + grade}</Text>
+          <View style={styles.smallSpacing}></View>
           <Text style={styles.forgot}>{'Subjects: ' + subjects}</Text>
+          <View style={styles.smallSpacing}></View>
           <Text style={styles.forgot}># of Sessions:</Text>
 
           <View style={styles.direction}>
@@ -76,7 +73,7 @@ const OtherInfoScreen = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
-
+          <View style={styles.smallSpacing}></View>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>Make Changes</Text>
           </TouchableOpacity>
@@ -99,11 +96,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#D5B537',
     width: '100%',
-    height: 500,
+    height: 600,
     borderRadius: 20,
     paddingTop: 20,
     paddingLeft: 20,
-    bottom: 25,
+    top: 30,
   },
   otherIcon: {
     alignItems: 'center',
@@ -174,6 +171,9 @@ const styles = StyleSheet.create({
   },
   largeSpacing: {
     height: 25,
+  },
+  smallSpacing: {
+    height: 12.5,
   },
   forgot: {
     alignSelf: 'auto',

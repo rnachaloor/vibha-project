@@ -28,12 +28,6 @@ const SettingsScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>My Profile</Text>
         <View style={styles.smallSpacing}></View>
-        <View style={styles.sec}>
-          <Icon name="person-circle" color="black" size={150} />
-          <TouchableOpacity style={styles.change}>
-            <Text>Change</Text>
-          </TouchableOpacity>
-        </View>
         <View style={styles.insidebg}>
           <View style={styles.newView}>
             <TouchableOpacity style={styles.otherButton}>
@@ -69,11 +63,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#D5B537',
     width: '100%',
-    height: 500,
+    height: 600,
     borderRadius: 20,
     paddingTop: 20,
     paddingLeft: 20,
-    bottom: 25,
+    top: 30,
   },
   text: {
     color: 'white',

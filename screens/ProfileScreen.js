@@ -26,6 +26,9 @@ import OtherInfoScreen from './OtherInfoScreen';
 import SettingsScreen from './SettingsScreen';
 import {storeData, getData} from '../functions/AsyncFunctions';
 
+import {Avatar} from 'react-native-paper';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
 const ProfileScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [username, setUsername] = useState('');
@@ -39,6 +42,43 @@ const ProfileScreen = ({navigation}) => {
   };
 
   load();
+
+  const [resourcePath, setResourcePath] = useState({
+    data: '',
+    uri: '../images/profile.png',
+  });
+
+  const selectFile = () => {
+    var options = {
+      title: 'Select Image',
+      customButtons: [
+        {
+          name: 'customOptionKey',
+          title: 'Choose file from Custom Option',
+        },
+      ],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = {uri: response.uri};
+
+        console.log(source);
+      }
+    });
+  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -69,8 +109,11 @@ const ProfileScreen = ({navigation}) => {
         <Text style={styles.titleText}>My Profile</Text>
         <View style={styles.smallSpacing}></View>
         <View style={styles.sec}>
-          <Icon name="person-circle" color="black" size={150} />
-          <TouchableOpacity style={styles.change}>
+          <Image
+            source={{uri: resourcePath.uri}}
+            style={{width: 150, height: 150}}
+          />
+          <TouchableOpacity style={styles.change} onPress={selectFile}>
             <Text>Change</Text>
           </TouchableOpacity>
         </View>
