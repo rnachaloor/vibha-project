@@ -11,6 +11,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import HomeHeader from '../components/HomeHeader';
 
@@ -30,7 +31,7 @@ const ContactScreen = ({navigation}) => {
           <TouchableOpacity>
             <Text
               style={styles.forgot}
-              onPress={() => navigation.navigate('Forgot Password')}>
+              onPress={() => Linking.openURL('https://www.instagram.com/')}>
               Instagram
             </Text>
           </TouchableOpacity>
@@ -44,7 +45,7 @@ const ContactScreen = ({navigation}) => {
           <TouchableOpacity>
             <Text
               style={styles.forgot}
-              onPress={() => navigation.navigate('Forgot Password')}>
+              onPress={() => Linking.openURL('https://www.google.com/')}>
               Phone Number
             </Text>
           </TouchableOpacity>
@@ -58,7 +59,7 @@ const ContactScreen = ({navigation}) => {
           <TouchableOpacity>
             <Text
               style={styles.forgot}
-              onPress={() => navigation.navigate('Forgot Password')}>
+              onPress={() => Linking.openURL('https://www.google.com/')}>
               Email
             </Text>
           </TouchableOpacity>
@@ -72,7 +73,7 @@ const ContactScreen = ({navigation}) => {
           <TouchableOpacity>
             <Text
               style={styles.forgot}
-              onPress={() => navigation.navigate('Forgot Password')}>
+              onPress={() => Linking.openURL('https://twitter.com/')}>
               Twitter
             </Text>
           </TouchableOpacity>

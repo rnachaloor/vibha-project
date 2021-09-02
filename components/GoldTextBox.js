@@ -17,10 +17,10 @@ const GoldTextBox = props => {
       <TextInput
         style={styles.bgTextBox}
         multiline={props.multiline}
-        onChangeText={props.onChangeText}
         textContentType={props.textContentType}
         secureTextEntry={props.secureTextEntry}
         onChangeText={props.onChangeText}
+        value={props.value}
       />
     </View>
   );

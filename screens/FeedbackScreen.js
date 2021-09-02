@@ -10,15 +10,16 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import HomeHeader from '../components/HomeHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
+import firestore from '@react-native-firebase/firestore';
 
 const FeedbackScreen = ({navigation}) => {
-
-  const [textBoxName, setTextBoxName] = useState("Other");
+  const [textBoxName, setTextBoxName] = useState('Other');
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -27,19 +28,43 @@ const FeedbackScreen = ({navigation}) => {
     {label: 'Other Feedback', value: 'other'},
   ]);
 
-  useEffect(() =>  {
+  const [name, setName] = useState('');
+  const [comments, setComments] = useState('');
+
+  useEffect(() => {
     if (value == 'tab') {
-      setTextBoxName("Tab Name")
+      setTextBoxName('Tab Name');
     } else if (value == 'tutor') {
-      setTextBoxName("Tutor Name")
+      setTextBoxName('Tutor Name');
     } else {
-      setTextBoxName("Other")
+      setTextBoxName('Other');
+      setValue('empty');
     }
-  })
+  });
+
+  const saveInfo = () => {
+    firestore()
+      .collection('feedback')
+      .add({
+        type: value,
+        name: name,
+        comments: comments,
+      })
+      .then(() => {
+        Alert.alert(
+          'THANK YOU',
+          'Thank you for the feedback. We will fix the issue right away.',
+        );
+      });
+    setComments('');
+    setTextBoxName('Other');
+    setValue('');
+    setName('');
+  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <HomeHeader onPress={() => navigation.openDrawer()}/>
+      <HomeHeader onPress={() => navigation.openDrawer()} />
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Feedback</Text>
@@ -61,12 +86,23 @@ const FeedbackScreen = ({navigation}) => {
         <GoldTextBox
           style={[styles.leftAlignment]}
           text={textBoxName}
+          onChangeText={e => setName(e)}
+          value={name}
         />
         <View style={styles.largeSpacing}></View>
         <Text style={styles.otherAlignment}>Comments</Text>
-        <TextInput style={styles.bgTextBox} multiline={true} />
+        <TextInput
+          style={styles.bgTextBox}
+          multiline={true}
+          onChangeText={newE => setComments(newE)}
+          value={comments}
+        />
         <View style={styles.largeSpacing}></View>
-        <BlackButton text="Submit" style={{alignSelf: 'center'}} />
+        <BlackButton
+          text="Submit"
+          style={{alignSelf: 'center'}}
+          onPress={saveInfo}
+        />
         <View style={styles.smallSpacing}></View>
         <View style={styles.smallSpacing}></View>
       </View>
