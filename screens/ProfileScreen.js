@@ -28,6 +28,7 @@ import {storeData, getData} from '../functions/AsyncFunctions';
 
 import {Avatar} from 'react-native-paper';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import firestore from '@react-native-firebase/firestore';
 
 const ProfileScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -49,6 +50,7 @@ const ProfileScreen = ({navigation}) => {
   });
 
   const selectFile = () => {
+    console.log(resourcePath.uri);
     var options = {
       title: 'Select Image',
       customButtons: [
@@ -78,6 +80,23 @@ const ProfileScreen = ({navigation}) => {
         console.log(source);
       }
     });
+
+    findData();
+  };
+
+  const findData = async () => {
+    const choice = await getData('choice');
+    if (choice == 'tutors') {
+      firestore()
+        .collection('tutors')
+        .doc(email)
+        .add({profileadd: resourcePath.uri});
+    } else {
+      firestore()
+        .collection('students')
+        .doc(email)
+        .add({profileadd: resourcePath.uri});
+    }
   };
 
   return (

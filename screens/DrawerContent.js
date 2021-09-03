@@ -25,6 +25,7 @@ export const DrawerContent = props => {
   const {logout} = useContext(AuthContext);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
+  const [profilepic, setProfilepic] = useState('../images/profile.png');
   const [loading, setLoading] = useState(true);
   const [type, setType] = useState('');
   const [mail, setMail] = useState('');
@@ -46,6 +47,7 @@ export const DrawerContent = props => {
           if (documentSnapshot.exists) {
             setName(documentSnapshot.data().name);
             setUsername(documentSnapshot.data().username);
+            setProfilepic(documentSnapshot.data().profileadd);
           }
         });
     } else {
@@ -57,6 +59,7 @@ export const DrawerContent = props => {
           if (documentSnapshot.exists) {
             setName(documentSnapshot.data().name);
             setUsername(documentSnapshot.data().username);
+            setProfilepic(documentSnapshot.data().profileadd);
           }
         });
     }
@@ -72,7 +75,7 @@ export const DrawerContent = props => {
               <View style={{flexDirection: 'row', marginTop: 15}}>
                 <Avatar.Image
                   source={{
-                    uri: 'https://api.adorable.io/avatars/50/abott@adorable.png',
+                    uri: profilepic,
                   }}
                   size={50}
                 />
