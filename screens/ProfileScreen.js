@@ -44,10 +44,7 @@ const ProfileScreen = ({navigation}) => {
 
   load();
 
-  const [resourcePath, setResourcePath] = useState({
-    data: '',
-    uri: '../images/profile.png',
-  });
+  const [resourcePath, setResourcePath] = useState({});
 
   const selectFile = () => {
     console.log(resourcePath.uri);
@@ -75,13 +72,13 @@ const ProfileScreen = ({navigation}) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = {uri: response.uri};
+        const source = response;
+        setResourcePath(source);
 
         console.log(source);
+        findData();
       }
     });
-
-    findData();
   };
 
   const findData = async () => {
@@ -130,7 +127,7 @@ const ProfileScreen = ({navigation}) => {
         <View style={styles.sec}>
           <Image
             source={{uri: resourcePath.uri}}
-            style={{width: 150, height: 150}}
+            style={{width: 200, height: 200}}
           />
           <TouchableOpacity style={styles.change} onPress={selectFile}>
             <Text>Change</Text>
