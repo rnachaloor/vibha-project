@@ -23,18 +23,96 @@ import {storeData, getData} from '../functions/AsyncFunctions';
 
 const OtherInfoScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [otherModalOpen, setOtherModalOpen] = useState(false);
 
   const [age, setAge] = useState('');
   const [grade, setGrade] = useState('');
   const [subjects, setSubjects] = useState('');
+  const [aage, setAAge] = useState('');
+  const [agrade, setAGrade] = useState('');
+  const [asubjects, setASubjects] = useState('');
+  const [email, setEmail] = useState('');
 
   const load = async () => {
     setAge(await getData('age'));
     setGrade(await getData('grade'));
     setSubjects(await getData('subjects'));
+    setEmail(await getData('email'));
   };
 
   load();
+
+  const newChanges = async () => {
+    const choice = await getData('choice');
+    if (aage != age && aage != '') {
+      storeData('age', aage);
+      if (choice == 'tutor') {
+        firestore()
+          .collection('tutors')
+          .doc(email)
+          .update({age: aage})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your age was successfully changed.');
+          });
+      } else {
+        firestore()
+          .collection('students')
+          .doc(email)
+          .update({age: aage})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your age was successfully changed.');
+          });
+      }
+    } else {
+      Alert.alert('Error', 'New age is the same as old age.');
+    }
+
+    if (agrade != grade && agrade != '') {
+      storeData('grade', agrade);
+      if (choice == 'tutor') {
+        firestore()
+          .collection('tutors')
+          .doc(email)
+          .update({grade: agrade})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
+          });
+      } else {
+        firestore()
+          .collection('students')
+          .doc(email)
+          .update({grade: agrade})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
+          });
+      }
+    } else {
+      Alert.alert('Error', 'New grade is the same as old grade.');
+    }
+
+    if (asubjects != subjects && asubjects != '') {
+      storeData('subjects', asubjects);
+      if (choice == 'tutor') {
+        firestore()
+          .collection('tutors')
+          .doc(email)
+          .update({subjects: asubjects})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your subjects were successfully changed.');
+          });
+      } else {
+        firestore()
+          .collection('students')
+          .doc(email)
+          .update({subjects: asubjects})
+          .then(() => {
+            Alert.alert('SUCCESS', 'Your subject were successfully changed.');
+          });
+      }
+    } else {
+      Alert.alert('Error', 'New subjects are the same as old subjects.');
+    }
+  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -47,6 +125,43 @@ const OtherInfoScreen = ({navigation}) => {
           </TouchableOpacity>
           <Text style={styles.otherText}>Session Dates</Text>
           <View style={styles.largeSpacing}></View>
+        </View>
+      </Modal>
+      <Modal>
+        <View style={styles.modal}>
+          <TouchableOpacity
+            style={styles.otherIcon}
+            onPress={() => setOtherModalOpen(false)}>
+            <Icon name="close" size={30} />
+          </TouchableOpacity>
+          <Text style={styles.otherText}>User Changes</Text>
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox
+            style={[styles.leftAlignment]}
+            text="Age"
+            onChangeText={e => setAAge(e)}
+            value={aage}
+          />
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox
+            style={[styles.leftAlignment]}
+            text="Grade"
+            onChangeText={e => setAGrade(e)}
+            value={agrade}
+          />
+          <View style={styles.largeSpacing}></View>
+          <PurpleTextBox
+            style={[styles.leftAlignment]}
+            text="Subjects"
+            onChangeText={e => setASubjects(e)}
+            value={asubjects}
+          />
+          <View style={styles.largeSpacing}></View>
+          <BlackButton
+            text="Submit"
+            style={{alignSelf: 'center'}}
+            onPress={newChanges}
+          />
         </View>
       </Modal>
       <ProfileHeader onPress={() => navigation.navigate('Home')} />
@@ -62,7 +177,6 @@ const OtherInfoScreen = ({navigation}) => {
           <Text style={styles.forgot}>{'Subjects: ' + subjects}</Text>
           <View style={styles.smallSpacing}></View>
           <Text style={styles.forgot}># of Sessions:</Text>
-
           <View style={styles.direction}>
             <Text style={styles.forgot}>Session Dates:</Text>
             <View style={styles.another}>
@@ -74,7 +188,9 @@ const OtherInfoScreen = ({navigation}) => {
             </View>
           </View>
           <View style={styles.smallSpacing}></View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={setOtherModalOpen(true)}>
             <Text style={styles.text}>Make Changes</Text>
           </TouchableOpacity>
         </View>
