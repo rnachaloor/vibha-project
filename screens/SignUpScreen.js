@@ -39,7 +39,7 @@ const SignUpScreen = ({navigation}) => {
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>
-        <View style={styles.largeSpacing}></View>
+        <View style={styles.smallSpacing}></View>
         <GoldTextBox
           onChangeText={value => setName(value)}
           style={[styles.leftAlignment]}
@@ -75,15 +75,12 @@ const SignUpScreen = ({navigation}) => {
           onChangeText={value => setConfirmPassword(value)}
         />
         <View style={styles.largeSpacing}></View>
-        <View style={styles.smallSpacing}></View>
         <BlackButton
           onPress={() => saveInfo()}
           text="Next"
           style={{alignSelf: 'center'}}
         />
-        <View style={styles.largeSpacing}></View>
-        <View style={styles.largeSpacing}></View>
-        <View style={styles.largeSpacing}></View>
+        <View style={styles.smallSpacing}></View>
         <View
           style={{
             flexDirection: 'row',
