@@ -9,6 +9,8 @@ const {presets} = require(`${appDirectory}/babel.config.js`);
 const compileNodeModules = [
   // Add every react-native package that needs compiling
   // 'react-native-gesture-handler',
+  'react-native',
+  'react',
   '@react-navigation/native',
   '@react-navigation/stack',
   '@react-navigation/drawer',
@@ -38,6 +40,10 @@ const babelLoaderConfiguration = {
     path.resolve(__dirname, 'index.web.js'), // Entry to your application
     path.resolve(__dirname, 'App.js'), // Change this to your main App file
     path.resolve(__dirname, 'src'),
+    path.resolve(__dirname, 'AuthProvider.js'),
+    path.resolve(__dirname, 'Routes.js'),
+    path.resolve(__dirname, 'screens'),
+    path.resolve(__dirname, 'components'),
     ...compileNodeModules,
   ],
   use: {
@@ -76,28 +82,16 @@ module.exports = {
   output: {
     path: path.resolve(appDirectory, 'dist'),
     publicPath: '/',
-    filename: 'vibhaProject.bundle.js',
+    filename: 'vibha.bundle.js',
   },
   resolve: {
-    extensions: ['.ts', '.web.js', '.js'],
+    extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js'],
     alias: {
       'react-native$': 'react-native-web',
     },
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {test: /\.js$/, use: 'babel-loader'},
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
       babelLoaderConfiguration,
       imageLoaderConfiguration,
       svgLoaderConfiguration,
