@@ -39,7 +39,7 @@ const babelLoaderConfiguration = {
   include: [
     path.resolve(__dirname, 'index.web.js'), // Entry to your application
     path.resolve(__dirname, 'App.js'), // Change this to your main App file
-    path.resolve(__dirname, 'src'),
+    path.resolve(__dirname, 'functions'),
     path.resolve(__dirname, 'AuthProvider.js'),
     path.resolve(__dirname, 'Routes.js'),
     path.resolve(__dirname, 'screens'),

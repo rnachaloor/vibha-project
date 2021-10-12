@@ -15,8 +15,7 @@ if (module.hot) {
 //   );
 // };
 
-AppRegistry.registerComponent(appName, () => App);
-AppRegistry.runApplication(appName, {
-  initialProps: {},
+AppRegistry.registerComponent('App', () => App);
+AppRegistry.runApplication('App', {
   rootTag: document.getElementById('app-root'),
 });

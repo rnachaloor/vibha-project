@@ -12,7 +12,6 @@ import {
   useColorScheme,
   View,
   Image,
-  Alert,
 } from 'react-native';
 
 import BlackButton from './components/BlackButton';
