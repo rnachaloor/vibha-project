@@ -80,17 +80,98 @@ const TimeChoiceScreen = ({navigation}) => {
 
   const submit = async () => {
     let final = '';
-    let dayinit = ['m', 'tu', 'w', 'th', 'f'];
-    let nums = ['1', '2', '3', '4', '5', '6', '7', '8'];
-    for (let i = 0; i < 5; i++) {
-      for (let k = 1; k < 9; k++) {
-        let option = dayinit[i] + nums[k];
-        if (option == true) {
-          final = final + option + ', ';
-        }
+    let daysChecks = [
+      m1,
+      m2,
+      m3,
+      m4,
+      m5,
+      m6,
+      m7,
+      m8,
+      tu1,
+      tu2,
+      tu3,
+      tu4,
+      tu5,
+      tu6,
+      tu7,
+      tu8,
+      w1,
+      w2,
+      w3,
+      w4,
+      w5,
+      w6,
+      w7,
+      w8,
+      th1,
+      th2,
+      th3,
+      th4,
+      th5,
+      th6,
+      th7,
+      th8,
+      f1,
+      f2,
+      f3,
+      f4,
+      f5,
+      f6,
+      f7,
+      f8,
+    ];
+
+    let daysChecksStr = [
+      'm1',
+      'm2',
+      'm3',
+      'm4',
+      'm5',
+      'm6',
+      'm7',
+      'm8',
+      'tu1',
+      'tu2',
+      'tu3',
+      'tu4',
+      'tu5',
+      'tu6',
+      'tu7',
+      'tu8',
+      'w1',
+      'w2',
+      'w3',
+      'w4',
+      'w5',
+      'w6',
+      'w7',
+      'w8',
+      'th1',
+      'th2',
+      'th3',
+      'th4',
+      'th5',
+      'th6',
+      'th7',
+      'th8',
+      'f1',
+      'f2',
+      'f3',
+      'f4',
+      'f5',
+      'f6',
+      'f7',
+      'f8',
+    ];
+    for (let i = 0; i < 40; i++) {
+      let option = daysChecks[i];
+      if (option == true) {
+        final = final + daysChecksStr[i] + ', ';
       }
     }
-
+    final = final.slice(0, -2);
     storeData('times', final);
 
     const email = await getData('email');
@@ -123,6 +204,7 @@ const TimeChoiceScreen = ({navigation}) => {
       })
       .then(() => {
         console.log('SUCCESS');
+        navigation.navigate('Home');
       });
   };
 

@@ -83,6 +83,7 @@ const CalendarScreen = ({navigation}) => {
         />
         <BlackButton
           text="Next"
+          onPress={() => navigation.navigate('TimeSelect')}
           style={{alignSelf: 'center', paddingTop: 20}}
         />
       </View>

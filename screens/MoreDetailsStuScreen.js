@@ -56,6 +56,7 @@ const MoreDetailsStuScreen = ({navigation}) => {
       })
       .then(() => {
         console.log('SUCCESS');
+        navigation.navigate('Home');
       });
     register(email, password);
   };

@@ -12,7 +12,6 @@ import {
   TouchableOpacity,
   Button,
   Modal,
-  Alert,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -22,9 +21,8 @@ import PurpleTextBox from '../components/PurpleTextBox';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import {storeData, getData} from '../functions/AsyncFunctions';
-import firestore from '@react-native-firebase/firestore';
 
-const OtherInfoScreen = ({navigation}) => {
+const TimeSelectScreen = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [otherModalOpen, setOtherModalOpen] = useState(false);
 
@@ -67,10 +65,7 @@ const OtherInfoScreen = ({navigation}) => {
           });
       }
     } else {
-      Alert.alert(
-        'Error',
-        'New age is the same as old age or new age is empty.',
-      );
+      Alert.alert('Error', 'New age is the same as old age.');
     }
 
     if (agrade != grade && agrade != '') {
@@ -93,10 +88,7 @@ const OtherInfoScreen = ({navigation}) => {
           });
       }
     } else {
-      Alert.alert(
-        'Error',
-        'New grade is the same as old grade or new grade is empty.',
-      );
+      Alert.alert('Error', 'New grade is the same as old grade.');
     }
 
     if (asubjects != subjects && asubjects != '') {
@@ -119,13 +111,8 @@ const OtherInfoScreen = ({navigation}) => {
           });
       }
     } else {
-      Alert.alert(
-        'Error',
-        'New subjects are the same as old subjects or new subjects are empty.',
-      );
+      Alert.alert('Error', 'New subjects are the same as old subjects.');
     }
-
-    setModalOpen(true);
   };
 
   return (
@@ -204,7 +191,7 @@ const OtherInfoScreen = ({navigation}) => {
           <View style={styles.smallSpacing}></View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => setOtherModalOpen(true)}>
+            onPress={setOtherModalOpen(true)}>
             <Text style={styles.text}>Make Changes</Text>
           </TouchableOpacity>
         </View>
@@ -313,4 +300,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OtherInfoScreen;
+export default TimeSelectScreen;
