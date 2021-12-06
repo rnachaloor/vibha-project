@@ -15,186 +15,20 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import ProfileHeader from '../components/ProfileHeader';
-import DropDownMenu from '../components/DropDownMenu';
-import PurpleTextBox from '../components/PurpleTextBox';
+import Header from '../components/Header';
 
+import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {storeData, getData} from '../functions/AsyncFunctions';
+
 
 const TimeSelectScreen = ({navigation}) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [otherModalOpen, setOtherModalOpen] = useState(false);
-
-  const [age, setAge] = useState('');
-  const [grade, setGrade] = useState('');
-  const [subjects, setSubjects] = useState('');
-  const [aage, setAAge] = useState('');
-  const [agrade, setAGrade] = useState('');
-  const [asubjects, setASubjects] = useState('');
-  const [email, setEmail] = useState('');
-
-  const load = async () => {
-    setAge(await getData('age'));
-    setGrade(await getData('grade'));
-    setSubjects(await getData('subjects'));
-    setEmail(await getData('email'));
-  };
-
-  load();
-
-  const newChanges = async () => {
-    const choice = await getData('choice');
-    if (aage != age && aage != '') {
-      storeData('age', aage);
-      if (choice == 'tutor') {
-        firestore()
-          .collection('tutors')
-          .doc(email)
-          .update({age: aage})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your age was successfully changed.');
-          });
-      } else {
-        firestore()
-          .collection('students')
-          .doc(email)
-          .update({age: aage})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your age was successfully changed.');
-          });
-      }
-    } else {
-      Alert.alert('Error', 'New age is the same as old age.');
-    }
-
-    if (agrade != grade && agrade != '') {
-      storeData('grade', agrade);
-      if (choice == 'tutor') {
-        firestore()
-          .collection('tutors')
-          .doc(email)
-          .update({grade: agrade})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
-          });
-      } else {
-        firestore()
-          .collection('students')
-          .doc(email)
-          .update({grade: agrade})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
-          });
-      }
-    } else {
-      Alert.alert('Error', 'New grade is the same as old grade.');
-    }
-
-    if (asubjects != subjects && asubjects != '') {
-      storeData('subjects', asubjects);
-      if (choice == 'tutor') {
-        firestore()
-          .collection('tutors')
-          .doc(email)
-          .update({subjects: asubjects})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your subjects were successfully changed.');
-          });
-      } else {
-        firestore()
-          .collection('students')
-          .doc(email)
-          .update({subjects: asubjects})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your subject were successfully changed.');
-          });
-      }
-    } else {
-      Alert.alert('Error', 'New subjects are the same as old subjects.');
-    }
-  };
+  
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Modal visible={modalOpen} animationType="slide">
-        <View style={styles.modal}>
-          <TouchableOpacity
-            style={styles.otherIcon}
-            onPress={() => setModalOpen(false)}>
-            <Icon name="close" size={30} />
-          </TouchableOpacity>
-          <Text style={styles.otherText}>Session Dates</Text>
-          <View style={styles.largeSpacing}></View>
-        </View>
-      </Modal>
-      <Modal>
-        <View style={styles.modal}>
-          <TouchableOpacity
-            style={styles.otherIcon}
-            onPress={() => setOtherModalOpen(false)}>
-            <Icon name="close" size={30} />
-          </TouchableOpacity>
-          <Text style={styles.otherText}>User Changes</Text>
-          <View style={styles.largeSpacing}></View>
-          <PurpleTextBox
-            style={[styles.leftAlignment]}
-            text="Age"
-            onChangeText={e => setAAge(e)}
-            value={aage}
-          />
-          <View style={styles.largeSpacing}></View>
-          <PurpleTextBox
-            style={[styles.leftAlignment]}
-            text="Grade"
-            onChangeText={e => setAGrade(e)}
-            value={agrade}
-          />
-          <View style={styles.largeSpacing}></View>
-          <PurpleTextBox
-            style={[styles.leftAlignment]}
-            text="Subjects"
-            onChangeText={e => setASubjects(e)}
-            value={asubjects}
-          />
-          <View style={styles.largeSpacing}></View>
-          <BlackButton
-            text="Submit"
-            style={{alignSelf: 'center'}}
-            onPress={newChanges}
-          />
-        </View>
-      </Modal>
-      <ProfileHeader onPress={() => navigation.navigate('Home')} />
+      <Header />
       <View style={styles.otherbg}>
-        <View style={styles.largeSpacing}></View>
-        <Text style={styles.titleText}>My Profile</Text>
-        <View style={styles.smallSpacing}></View>
-        <View style={styles.insidebg}>
-          <Text style={styles.forgot}>{'Age: ' + age}</Text>
-          <View style={styles.smallSpacing}></View>
-          <Text style={styles.forgot}>{'Grade: ' + grade}</Text>
-          <View style={styles.smallSpacing}></View>
-          <Text style={styles.forgot}>{'Subjects: ' + subjects}</Text>
-          <View style={styles.smallSpacing}></View>
-          <Text style={styles.forgot}># of Sessions:</Text>
-          <View style={styles.direction}>
-            <Text style={styles.forgot}>Session Dates:</Text>
-            <View style={styles.another}>
-              <TouchableOpacity
-                style={styles.otherButton}
-                onPress={() => setModalOpen(true)}>
-                <Text style={styles.text}>View Dates</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.smallSpacing}></View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={setOtherModalOpen(true)}>
-            <Text style={styles.text}>Make Changes</Text>
-          </TouchableOpacity>
-        </View>
+        
       </View>
     </SafeAreaView>
   );
@@ -205,98 +39,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  bgTextBox: {
+    backgroundColor: 'white',
+    borderRadius: 30,
+    paddingLeft: 10,
+    width: 350,
+    height: 150,
+    left: 20,
+  },
   otherbg: {
     flex: 7,
     backgroundColor: '#8839BF',
   },
-  insidebg: {
-    alignSelf: 'center',
-    backgroundColor: '#D5B537',
-    width: '100%',
-    height: 600,
-    borderRadius: 20,
-    paddingTop: 20,
-    paddingLeft: 20,
-    top: 30,
-  },
-  otherIcon: {
-    alignItems: 'center',
-    paddingTop: 20,
-    justifyContent: 'center',
-    paddingBottom: 20,
-  },
-  modal: {
-    flex: 1,
-    backgroundColor: '#D5B537',
-  },
-  leftAlignment: {
-    left: 25,
-  },
-  otherText: {
-    fontSize: 45,
-    alignSelf: 'center',
-    color: 'black',
-  },
-  text: {
-    color: 'white',
-  },
-  direction: {
-    flexDirection: 'row',
-  },
-  sec: {
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#464444',
-    width: 340,
-    borderRadius: 50,
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    bottom: 5,
-  },
-  otherButton: {
-    backgroundColor: '#464444',
-    width: 200,
-    borderRadius: 50,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  change: {
-    backgroundColor: 'white',
-    width: 100,
-    borderRadius: 50,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    bottom: 40,
-  },
-  another: {
-    paddingLeft: 30,
-  },
-  icon: {
-    alignItems: 'center',
-    paddingTop: 5,
-    justifyContent: 'center',
-    paddingBottom: 5,
+  calendar: {
+    borderWidth: 3,
+    borderColor: '#D5B537',
   },
   titleText: {
     fontSize: 55,
     alignSelf: 'center',
     color: 'white',
   },
+  otherText: {
+    fontSize: 50,
+    alignSelf: 'center',
+    color: 'black',
+  },
   largeSpacing: {
     height: 25,
   },
-  smallSpacing: {
-    height: 12.5,
+  text: {
+    color: 'white',
   },
-  forgot: {
-    alignSelf: 'auto',
-    color: 'black',
-    fontSize: 20,
+  icon: {
+    alignItems: 'center',
+    paddingTop: 30,
+    justifyContent: 'center',
     paddingBottom: 20,
+  },
+  modal: {
+    flex: 1,
+    backgroundColor: '#D5B537',
   },
 });
 

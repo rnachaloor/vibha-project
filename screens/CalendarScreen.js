@@ -20,6 +20,7 @@ import HomeHeader from '../components/HomeHeader';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {storeData, getData} from '../functions/AsyncFunctions';
 
 const INITIAL_DATE = moment().format('YYYY-MM-DD');
 
@@ -37,6 +38,13 @@ const CalendarScreen = ({navigation}) => {
     setModalOpen(true);
     setModalDate(moment(day.dateString).format('MMM. DD, YYYY'));
   };
+
+  const selectTimes = async (day) => {
+    let otherDay = moment(day.dateString).format('YYYY-MM-DD');
+    storeData("datesel", otherDay);
+    navigation.navigate("TimeSelect");
+
+  }
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
@@ -83,7 +91,7 @@ const CalendarScreen = ({navigation}) => {
         />
         <BlackButton
           text="Next"
-          onPress={() => navigation.navigate('TimeSelect')}
+          onPress={selectTimes}
           style={{alignSelf: 'center', paddingTop: 20}}
         />
       </View>
