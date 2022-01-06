@@ -42,7 +42,7 @@ const CalendarScreen = ({navigation}) => {
   const selectTimes = async (day) => {
     let otherDay = moment(day.dateString).format('YYYY-MM-DD');
     storeData("datesel", otherDay);
-    navigation.navigate("TimeSelect");
+    navigation.navigate("TutorSelect");
 
   }
 

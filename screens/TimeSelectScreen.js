@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Button,
   Modal,
+  FlatList,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -19,16 +20,35 @@ import Header from '../components/Header';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import {storeData, getData} from '../functions/AsyncFunctions';
+import firestore from '@react-native-firebase/firestore';
 
 const TimeSelectScreen = ({navigation}) => {
-  
+  const [mail, setMail] = useState('');
+  const [times, setTimes] = useState('');
+
+  const load = async () => {
+    setMail(await getData('email'));
+  };
+
+  load();
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().times);
+        }
+      });
+  });
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
       <View style={styles.otherbg}>
-        
+        <FlatList data={times} renderItem={({item}) => <Text>{item}</Text>} />
       </View>
     </SafeAreaView>
   );

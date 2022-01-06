@@ -33,6 +33,7 @@ import MoreDetailsTutorScreen from './screens/MoreDetailsTutorScreen';
 import MoreDetailsStuScreen from './screens/MoreDetailsStuScreen';
 import TimeChoiceScreen from './screens/TimeChoiceScreen';
 import TimeSelectScreen from './screens/TimeSelectScreen';
+import TutorSelectScreen from './screens/TutorSelectScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -64,6 +65,7 @@ export const HomeStackScreen = () => {
       <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="TutorSelect" component={TutorSelectScreen} />
       <Stack.Screen name="TimeSelect" component={TimeSelectScreen} />
     </Stack.Navigator>
   );
