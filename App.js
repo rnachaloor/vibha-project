@@ -31,9 +31,15 @@ import SignUpScreen from './screens/SignUpScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import MoreDetailsTutorScreen from './screens/MoreDetailsTutorScreen';
 import MoreDetailsStuScreen from './screens/MoreDetailsStuScreen';
-import TimeChoiceScreen from './screens/TimeChoiceScreen';
 import TimeSelectScreen from './screens/TimeSelectScreen';
 import TutorSelectScreen from './screens/TutorSelectScreen';
+import MondayTimeScreen from './screens/MondayTimeScreen';
+import TuesdayTimeScreen from './screens/TuesdayTimeScreen';
+import WednesdayTimeScreen from './screens/WednesdayTimeScreen';
+import ThursdayTimeScreen from './screens/ThursdayTimeScreen';
+import FridayTimeScreen from './screens/FridayTimeScreen';
+import SaturdayTimeScreen from './screens/SaturdayTimeScreen';
+import SundayTimeScreen from './screens/SundayTimeScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -49,7 +55,13 @@ export const LoginStackScreen = () => {
       <Stack.Screen name="Details" component={SignUpDetailsScreen} />
       <Stack.Screen name="MoreDetails" component={MoreDetailsTutorScreen} />
       <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
-      <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
+      <Stack.Screen name="MondayTime" component={MondayTimeScreen} />
+      <Stack.Screen name="TuesdayTime" component={TuesdayTimeScreen} />
+      <Stack.Screen name="WednesdayTime" component={WednesdayTimeScreen} />
+      <Stack.Screen name="ThursdayTime" component={ThursdayTimeScreen} />
+      <Stack.Screen name="FridayTime" component={FridayTimeScreen} />
+      <Stack.Screen name="SaturdayTIme" component={SaturdayTimeScreen} />
+      <Stack.Screen name="SundayTime" component={SundayTimeScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
@@ -62,7 +74,13 @@ export const HomeStackScreen = () => {
       <Stack.Screen name="Details" component={SignUpDetailsScreen} />
       <Stack.Screen name="MoreDetails" component={MoreDetailsTutorScreen} />
       <Stack.Screen name="MoreStuDetails" component={MoreDetailsStuScreen} />
-      <Stack.Screen name="TimeChoice" component={TimeChoiceScreen} />
+      <Stack.Screen name="MondayTime" component={MondayTimeScreen} />
+      <Stack.Screen name="TuesdayTime" component={TuesdayTimeScreen} />
+      <Stack.Screen name="WednesdayTime" component={WednesdayTimeScreen} />
+      <Stack.Screen name="ThursdayTime" component={ThursdayTimeScreen} />
+      <Stack.Screen name="FridayTime" component={FridayTimeScreen} />
+      <Stack.Screen name="SaturdayTIme" component={SaturdayTimeScreen} />
+      <Stack.Screen name="SundayTime" component={SundayTimeScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="TutorSelect" component={TutorSelectScreen} />
