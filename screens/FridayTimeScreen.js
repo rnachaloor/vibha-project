@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import firestore from '@react-native-firebase/firestore';
 
-const TuesdayTimeScreen = ({navigation}) => {
+const FridayTimeScreen = ({navigation}) => {
   const [f1, setF1] = useState(false);
   const [f2, setF2] = useState(false);
   const [f3, setF3] = useState(false);
@@ -40,9 +40,9 @@ const TuesdayTimeScreen = ({navigation}) => {
       '5:15 - 5:45',
       '6:00 - 6:30',
       '6:45 - 7:15',
-      '7:30 - 8:15',
-      '8:30 - 9:00',
-      '9:15 - 9:45',
+      '7:30 - 8:00',
+      '8:15 - 8:45',
+      '9:00 - 9:30',
     ];
     let final = '';
 
