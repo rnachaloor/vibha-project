@@ -36,13 +36,13 @@ const FridayTimeScreen = ({navigation}) => {
   const submitTimes = async () => {
     let daysCheck = [f1, f2, f3, f4, f5, f6, f7];
     let timeSpot = [
-      '4:30 - 5:00',
-      '5:15 - 5:45',
-      '6:00 - 6:30',
-      '6:45 - 7:15',
-      '7:30 - 8:00',
-      '8:15 - 8:45',
-      '9:00 - 9:30',
+      '4:30pm - 5:00pm',
+      '5:15pm - 5:45pm',
+      '6:00pm - 6:30pm',
+      '6:45pm - 7:15pm',
+      '7:30pm - 8:00pm',
+      '8:15pm - 8:45pm',
+      '9:00pm - 9:30pm',
     ];
     let final = '';
 
@@ -52,7 +52,7 @@ const FridayTimeScreen = ({navigation}) => {
         final = final + timeSpot[i] + ', ';
       }
     }
-
+    final = final.slice(0, -2);
     storeData('fridaytimes', final);
 
     navigation.navigate('SaturdayTime');
@@ -63,25 +63,25 @@ const FridayTimeScreen = ({navigation}) => {
       <Header />
       <View style={styles.otherbg}>
         <Text style={styles.titleText}>Friday</Text>
-        <Text>4:30 - 5:00</Text>
+        <Text>4:30pm - 5:00pm</Text>
         <CheckBox value={f1} onValueChange={setF1} style={styles.checkbox} />
 
-        <Text>5:15 - 5:45</Text>
+        <Text>5:15pm - 5:45pm</Text>
         <CheckBox value={f2} onValueChange={setF2} style={styles.checkbox} />
 
-        <Text>6:00 - 6:30</Text>
+        <Text>6:00pm - 6:30pm</Text>
         <CheckBox value={f3} onValueChange={setF3} style={styles.checkbox} />
 
-        <Text>6:45 - 7:15</Text>
+        <Text>6:45pm - 7:15pm</Text>
         <CheckBox value={f4} onValueChange={setF4} style={styles.checkbox} />
 
-        <Text>7:30 - 8:00</Text>
+        <Text>7:30pm - 8:00pm</Text>
         <CheckBox value={f5} onValueChange={setF5} style={styles.checkbox} />
 
-        <Text>8:15 - 8:45</Text>
+        <Text>8:15pm - 8:45pm</Text>
         <CheckBox value={f6} onValueChange={setF6} style={styles.checkbox} />
 
-        <Text>9:00 - 9:30</Text>
+        <Text>9:00pm - 9:30pm</Text>
         <CheckBox value={f7} onValueChange={setF7} style={styles.checkbox} />
 
         <BlackButton

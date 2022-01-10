@@ -47,23 +47,23 @@ const SaturdayTimeScreen = ({navigation}) => {
   const submitTimes = async () => {
     let daysCheck = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17];
     let timeSpot = [
-      '9:00 - 9:30',
-      '9:45 - 10:15',
-      '10:30 - 11:00',
-      '11:15 - 11:45',
-      '12:00 - 12:30',
-      '12:45 - 1:15',
-      '1:30 - 2:00',
-      '2:15 - 2:45',
-      '3:00 - 3:30',
-      '3:45 - 4:15',
-      '4:30 - 5:00',
-      '5:15 - 5:45',
-      '6:00 - 6:30',
-      '6:45 - 7:15',
-      '7:30 - 8:00',
-      '8:15 - 8:45',
-      '9:00 - 9:30'
+      '9:00am - 9:30am',
+      '9:45am - 10:15am',
+      '10:30am - 11:00am',
+      '11:15am - 11:45am',
+      '12:00pm - 12:30pm',
+      '12:45pm - 1:15pm',
+      '1:30pm - 2:00pm',
+      '2:15pm - 2:45pm',
+      '3:00pm - 3:30pm',
+      '3:45pm - 4:15pm',
+      '4:30pm - 5:00pm',
+      '5:15pm - 5:45pm',
+      '6:00pm - 6:30pm',
+      '6:45pm - 7:15pm',
+      '7:30pm - 8:00pm',
+      '8:15pm - 8:45pm',
+      '9:00pm - 9:30pm'
     ];
     let final = '';
 
@@ -73,7 +73,7 @@ const SaturdayTimeScreen = ({navigation}) => {
         final = final + timeSpot[i] + ', ';
       }
     }
-
+    final = final.slice(0, -2);
     storeData('saturdaytimes', final);
 
     navigation.navigate('SundayTime');
@@ -84,56 +84,56 @@ const SaturdayTimeScreen = ({navigation}) => {
       <Header />
       <View style={styles.otherbg}>
         <Text style={styles.titleText}>Saturday</Text>
-        <Text>9:00 - 9:30</Text>
-        <CheckBox value={f1} onValueChange={setF1} style={styles.checkbox} />
+        <Text>9:00am - 9:30am</Text>
+        <CheckBox value={s1} onValueChange={setS1} style={styles.checkbox} />
 
-        <Text>9:45 - 10:15</Text>
-        <CheckBox value={f1} onValueChange={setF2} style={styles.checkbox} />
+        <Text>9:45am - 10:15am</Text>
+        <CheckBox value={s2} onValueChange={setS2} style={styles.checkbox} />
 
-        <Text>10:30 - 11:00</Text>
-        <CheckBox value={f1} onValueChange={setF3} style={styles.checkbox} />
+        <Text>10:30am - 11:00am</Text>
+        <CheckBox value={s3} onValueChange={setS3} style={styles.checkbox} />
 
-        <Text>11:15 - 11:45</Text>
-        <CheckBox value={f1} onValueChange={setF4} style={styles.checkbox} />
+        <Text>11:15am - 11:45am</Text>
+        <CheckBox value={s4} onValueChange={setS4} style={styles.checkbox} />
 
-        <Text>12:00 - 12:30</Text>
-        <CheckBox value={f1} onValueChange={setF5} style={styles.checkbox} />
+        <Text>12:00pm - 12:30pm</Text>
+        <CheckBox value={s5} onValueChange={setS5} style={styles.checkbox} />
 
-        <Text>12:45 - 1:15</Text>
-        <CheckBox value={f1} onValueChange={setF6} style={styles.checkbox} />
+        <Text>12:45pm - 1:15pm</Text>
+        <CheckBox value={s6} onValueChange={setS6} style={styles.checkbox} />
 
-        <Text>1:30 - 2:00</Text>
-        <CheckBox value={f1} onValueChange={setF7} style={styles.checkbox} />
+        <Text>1:30pm - 2:00pm</Text>
+        <CheckBox value={s7} onValueChange={setS7} style={styles.checkbox} />
 
-        <Text>2:15 - 2:45</Text>
-        <CheckBox value={f1} onValueChange={setF8} style={styles.checkbox} />
+        <Text>2:15pm - 2:45pm</Text>
+        <CheckBox value={s8} onValueChange={setS8} style={styles.checkbox} />
 
-        <Text>3:00 - 3:30</Text>
-        <CheckBox value={f1} onValueChange={setF9} style={styles.checkbox} />
+        <Text>3:00pm - 3:30pm</Text>
+        <CheckBox value={s9} onValueChange={setS9} style={styles.checkbox} />
 
-        <Text>3:45 - 4:15</Text>
-        <CheckBox value={f1} onValueChange={setF10} style={styles.checkbox} />
+        <Text>3:45pm - 4:15pm</Text>
+        <CheckBox value={s10} onValueChange={setS10} style={styles.checkbox} />
 
-        <Text>4:30 - 5:00</Text>
-        <CheckBox value={f1} onValueChange={setF11} style={styles.checkbox} />
+        <Text>4:30pm - 5:00pm</Text>
+        <CheckBox value={s11} onValueChange={setS11} style={styles.checkbox} />
 
-        <Text>5:15 - 5:45</Text>
-        <CheckBox value={f2} onValueChange={setF12} style={styles.checkbox} />
+        <Text>5:15pm - 5:45pm</Text>
+        <CheckBox value={s12} onValueChange={setS12} style={styles.checkbox} />
 
-        <Text>6:00 - 6:30</Text>
-        <CheckBox value={f3} onValueChange={setF13} style={styles.checkbox} />
+        <Text>6:00pm - 6:30pm</Text>
+        <CheckBox value={s13} onValueChange={setS13} style={styles.checkbox} />
 
-        <Text>6:45 - 7:15</Text>
-        <CheckBox value={f4} onValueChange={setF14} style={styles.checkbox} />
+        <Text>6:45pm - 7:15pm</Text>
+        <CheckBox value={s14} onValueChange={setS14} style={styles.checkbox} />
 
-        <Text>7:30 - 8:00</Text>
-        <CheckBox value={f5} onValueChange={setF15} style={styles.checkbox} />
+        <Text>7:30pm - 8:00pm</Text>
+        <CheckBox value={s15} onValueChange={setS15} style={styles.checkbox} />
 
-        <Text>8:15 - 8:45</Text>
-        <CheckBox value={f6} onValueChange={setF16} style={styles.checkbox} />
+        <Text>8:15pm - 8:45pm</Text>
+        <CheckBox value={s16} onValueChange={setS16} style={styles.checkbox} />
 
-        <Text>9:00 - 9:30</Text>
-        <CheckBox value={f7} onValueChange={setF17} style={styles.checkbox} />
+        <Text>9:00pm - 9:30pm</Text>
+        <CheckBox value={s17} onValueChange={setS17} style={styles.checkbox} />
 
         <BlackButton
           text="Next"

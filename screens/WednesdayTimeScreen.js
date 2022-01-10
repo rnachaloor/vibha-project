@@ -36,13 +36,13 @@ const WednesdayTimeScreen = ({navigation}) => {
   const submitTimes = async () => {
     let daysCheck = [w1, w2, w3, w4, w5, w6, w7];
     let timeSpot = [
-      '4:30 - 5:00',
-      '5:15 - 5:45',
-      '6:00 - 6:30',
-      '6:45 - 7:15',
-      '7:30 - 8:00',
-      '8:15 - 8:45',
-      '9:00 - 9:30',
+      '4:30pm - 5:00pm',
+      '5:15pm - 5:45pm',
+      '6:00pm - 6:30pm',
+      '6:45pm - 7:15pm',
+      '7:30pm - 8:00pm',
+      '8:15pm - 8:45pm',
+      '9:00pm - 9:30pm',
     ];
     let final = '';
 
@@ -52,7 +52,7 @@ const WednesdayTimeScreen = ({navigation}) => {
         final = final + timeSpot[i] + ', ';
       }
     }
-
+    final = final.slice(0, -2);
     storeData('wednesdaytimes', final);
 
     navigation.navigate('ThrusdayTime');
@@ -63,25 +63,25 @@ const WednesdayTimeScreen = ({navigation}) => {
       <Header />
       <View style={styles.otherbg}>
         <Text style={styles.titleText}>Wednesday</Text>
-        <Text>4:30 - 5:00</Text>
+        <Text>4:30pm - 5:00pm</Text>
         <CheckBox value={w1} onValueChange={setW1} style={styles.checkbox} />
 
-        <Text>5:15 - 5:45</Text>
+        <Text>5:15pm - 5:45pm</Text>
         <CheckBox value={w2} onValueChange={setW2} style={styles.checkbox} />
 
-        <Text>6:00 - 6:30</Text>
+        <Text>6:00pm - 6:30pm</Text>
         <CheckBox value={w3} onValueChange={setW3} style={styles.checkbox} />
 
-        <Text>6:45 - 7:15</Text>
+        <Text>6:45pm - 7:15pm</Text>
         <CheckBox value={w4} onValueChange={setW4} style={styles.checkbox} />
 
-        <Text>7:30 - 8:00</Text>
+        <Text>7:30pm - 8:00pm</Text>
         <CheckBox value={w5} onValueChange={setW5} style={styles.checkbox} />
 
-        <Text>8:15 - 8:45</Text>
+        <Text>8:15pm - 8:45pm</Text>
         <CheckBox value={w6} onValueChange={setW6} style={styles.checkbox} />
 
-        <Text>9:00 - 9:30</Text>
+        <Text>9:00pm - 9:30pm</Text>
         <CheckBox value={w7} onValueChange={setW7} style={styles.checkbox} />
 
         <BlackButton
