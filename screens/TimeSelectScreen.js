@@ -25,30 +25,126 @@ import firestore from '@react-native-firebase/firestore';
 
 const TimeSelectScreen = ({navigation}) => {
   const [mail, setMail] = useState('');
+  const [week, setWeek] = useState('');
   const [times, setTimes] = useState('');
+  // const [mtimes, setMTimes] = useState('');
+  // const [tutimes, setTUTimes] = useState('');
+  // const [wtimes, setWTimes] = useState('');
+  // const [thtimes, setTHTimes] = useState('');
+  // const [ftimes, setFTimes] = useState('');
+  // const [satimes, setSATimes] = useState('');
+  // const [sutimes, setSUTimes] = useState('');
 
   const load = async () => {
     setMail(await getData('email'));
-  };
+    const weekNum = await getData('weeksel'));
 
-  load();
-  useEffect(() => {
-    const subscriber = firestore()
+    if(weekNum == 1) {
+      setWeek('Monday');
+      const subscriber = firestore()
       .collection('tutors')
       .doc(mail)
       .get()
       .then(documentSnapshot => {
         if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().times);
+          setTimes(documentSnapshot.data().mondaytimes);
         }
       });
-  });
+    } else if(weekNum == 2) {
+      setWeek('Tuesday');
+      const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().tuesdaytimes);
+        }
+      });
+    } else if(weekNum == 3) {
+      setWeek('Wednesday');
+      const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().wednesdaytimes);
+        }
+      });
+    } else if(weekNum == 4) {
+      setWeek('Thursday');
+      const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().thursdaytimes);
+        }
+      });
+    } else if(weekNum == 5) {
+      setWeek('Friday');
+      const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().fridaytimes);
+        }
+      });
+    } else if(weekNum == 6) {
+      setWeek('Saturday');
+      const subscriber = firestore()
+      .collection('tutors')
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().saturdaytimes);
+        }
+      });
+    } else {
+      setWeek('Sunday')
+      const subscriber = firestore()
+      .collection('tutors');
+      .doc(mail)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          setTimes(documentSnapshot.data().sundaytimes);
+        }
+      });
+    }
+
+    const finalTimes = times.split(", ");
+  };
+
+  load();
+  // useEffect(() => {
+  //   const subscriber = firestore()
+  //     .collection('tutors')
+  //     .doc(mail)
+  //     .get()
+  //     .then(documentSnapshot => {
+  //       if (documentSnapshot.exists) {
+  //         setMTimes(documentSnapshot.data().mondaytimes);
+  //         setTUTimes(documentSnapshot.data().tuesdaytimes);
+  //         setWTimes(documentSnapshot.data().wednesdaytimes);
+  //         setTHTimes(documentSnapshot.data().thursdaytimes);
+  //         setFTimes(documentSnapshot.data().fridaytimes);
+  //         setSATimes(documentSnapshot.data().saturdaytimes);
+  //         setSUTimes(documentSnapshot.data().sundaytimes);
+  //       }
+  //     });
+  // });
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
       <View style={styles.otherbg}>
-        <FlatList data={times} renderItem={({item}) => <Text>{item}</Text>} />
+        <FlatList data={finalTimes} renderItem={({item}) => <Text>{item}</Text>} />
       </View>
     </SafeAreaView>
   );

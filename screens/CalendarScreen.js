@@ -41,6 +41,9 @@ const CalendarScreen = ({navigation}) => {
 
   const selectTimes = async (day) => {
     let otherDay = moment(day.dateString).format('YYYY-MM-DD');
+    let change = moment(day.dateString).format('MMM. DD, YYYY');
+    const weekDay = new Date(change);
+    storeData("weeksel", weekDay);
     storeData("datesel", otherDay);
     navigation.navigate("TutorSelect");
 
