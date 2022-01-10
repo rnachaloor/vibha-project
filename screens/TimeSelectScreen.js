@@ -27,6 +27,8 @@ const TimeSelectScreen = ({navigation}) => {
   const [mail, setMail] = useState('');
   const [week, setWeek] = useState('');
   const [times, setTimes] = useState('');
+  const [ftimes, setFTimes] = useState([]);
+  const [timesel, setTimeSel] = useState('');
   // const [mtimes, setMTimes] = useState('');
   // const [tutimes, setTUTimes] = useState('');
   // const [wtimes, setWTimes] = useState('');
@@ -119,6 +121,7 @@ const TimeSelectScreen = ({navigation}) => {
     }
 
     const finalTimes = times.split(", ");
+    setFTimes(finalTimes)
   };
 
   load();
@@ -140,11 +143,30 @@ const TimeSelectScreen = ({navigation}) => {
   //     });
   // });
 
+  const confirmTime = () => {
+    const pos = ftimes.indexOf(timesel);
+    const ntimes = ftimes.splice(pos, 1);
+    setFTimes(ntimes);
+    navigation.navigate("ConfirmApp");
+  }
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
       <View style={styles.otherbg}>
-        <FlatList data={finalTimes} renderItem={({item}) => <Text>{item}</Text>} />
+        <FlatList 
+          data={ftimes} 
+          renderItem={({item}) =>
+            <TouchableOpacity 
+              onPress={
+                setTimeSel(item);
+                confirmTime();
+              }> 
+              <Text>{item}</Text>
+            </TouchableOpacity>
+
+          } 
+        />
       </View>
     </SafeAreaView>
   );

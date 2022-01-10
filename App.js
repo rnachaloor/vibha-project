@@ -40,6 +40,7 @@ import ThursdayTimeScreen from './screens/ThursdayTimeScreen';
 import FridayTimeScreen from './screens/FridayTimeScreen';
 import SaturdayTimeScreen from './screens/SaturdayTimeScreen';
 import SundayTimeScreen from './screens/SundayTimeScreen';
+import ConfirmAppointmentScreen from './screens/ConfirmAppointmentScreen';
 
 import HomeNavigationScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -85,6 +86,7 @@ export const HomeStackScreen = () => {
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="TutorSelect" component={TutorSelectScreen} />
       <Stack.Screen name="TimeSelect" component={TimeSelectScreen} />
+      <Stack.Screen name='ConfirmApp' component={ConfirmAppointmentScreen} />
     </Stack.Navigator>
   );
 };
