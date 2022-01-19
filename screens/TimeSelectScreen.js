@@ -37,6 +37,29 @@ const TimeSelectScreen = ({navigation}) => {
   // const [satimes, setSATimes] = useState('');
   // const [sutimes, setSUTimes] = useState('');
 
+  const [selectedApp, setSelectedApp] = useState([]);
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('students')
+      .onSnapshot(querySnapshot => {
+        const selectedapp = [];
+
+        querySnapshot.forEach(documentSnapshot => {
+          selectedapp.push({
+            key: documentSnapshot.id,
+            day: documentSnapshot.data().appointmentDay,
+            time: documentSnapshot.data().appointmentTime,
+          });
+          //console.log(tutors);
+        });
+
+        setSelectedApp(selectedapp);
+        //setLoading(false);
+      });
+    return () => subscriber();
+  }, []);
+
   const load = async () => {
     setMail(await getData('email'));
     const weekNum = await getData('weeksel'));
@@ -143,7 +166,7 @@ const TimeSelectScreen = ({navigation}) => {
   //     });
   // });
 
-  const confirmTime = () => {
+  const confirmTime = async () => {
     const pos = ftimes.indexOf(timesel);
     const ntimes = ftimes.splice(pos, 1);
     setFTimes(ntimes);
@@ -159,6 +182,7 @@ const TimeSelectScreen = ({navigation}) => {
           renderItem={({item}) =>
             <TouchableOpacity 
               onPress={
+                storeData('timesel', item);
                 setTimeSel(item);
                 confirmTime();
               }> 

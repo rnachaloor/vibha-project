@@ -53,6 +53,8 @@ const MoreDetailsStuScreen = ({navigation}) => {
         age: age,
         grade: grade,
         subjects: subjects,
+        appointmentDay: '',
+        appointmentTime: '',
       })
       .then(() => {
         console.log('SUCCESS');

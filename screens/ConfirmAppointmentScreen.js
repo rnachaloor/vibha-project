@@ -13,6 +13,7 @@ import {
   Button,
   Modal,
   FlatList,
+  Alert,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -24,11 +25,53 @@ import {storeData, getData} from '../functions/AsyncFunctions';
 import firestore from '@react-native-firebase/firestore';
 
 const ConfirmAppointmentScreen = ({navigation}) => {
+  const [aday, setADay] = useState('');
+  const [time, setTime] = useState('');
+  const [tut, setTut] = useState('');
+  const [email, setEmail] = useState('');
 
+  const load = async () => {
+    const dayChoice = await getData('datesel');
+    setADay(dayChoice);
+
+    const timeChoice = await getData('timesel')
+    setTime(timeChoice);
+
+    const tutorChoice = await getData('schedtut');
+    setTut(tutorChoice);
+
+    const emailSet = await getData('email');
+    setEmail(emailset);
+  }
+
+  const finalizeTime = async () => {
+    firestore()
+      .collection('students')
+      .doc(email)
+      .set({
+        appointmentDay: aday,
+        appointmentTime: time,
+      })
+      .then(() => {
+        Alert.alert('Thanks', "Your appointment was successfully scheduled.");
+        navigation.navigate('Home');
+      });
+  }
+
+  load();
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
       <View style={styles.otherbg}>
+        <Text>{aday}</Text>
+        <Text>{time}</Text>
+        <Text>{tut}</Text>
+
+        <BlackButton
+          text="Confirm"
+          onPress={finalizeTime}
+          style={{alignSelf: 'center', paddingTop: 20}}
+        />
       </View>
     </SafeAreaView>
   );
