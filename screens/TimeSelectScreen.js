@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import Header from '../components/Header';
+import StepHeader from '../components/StepHeader';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -26,9 +26,11 @@ import firestore from '@react-native-firebase/firestore';
 const TimeSelectScreen = ({navigation}) => {
   const [mail, setMail] = useState('');
   const [week, setWeek] = useState('');
+  const [day, setDay] = useState('');
   const [times, setTimes] = useState('');
   const [ftimes, setFTimes] = useState([]);
   const [timesel, setTimeSel] = useState('');
+  const [atut, setATut] = useState('');
   // const [mtimes, setMTimes] = useState('');
   // const [tutimes, setTUTimes] = useState('');
   // const [wtimes, setWTimes] = useState('');
@@ -50,6 +52,7 @@ const TimeSelectScreen = ({navigation}) => {
             key: documentSnapshot.id,
             day: documentSnapshot.data().appointmentDay,
             time: documentSnapshot.data().appointmentTime,
+            tutor: documentSnapshot.data().tutorChosen,
           });
           //console.log(tutors);
         });
@@ -61,7 +64,9 @@ const TimeSelectScreen = ({navigation}) => {
   }, []);
 
   const load = async () => {
-    setMail(await getData('email'));
+    setMail(await getData('schedtutem'));
+    setDay(await getData('datesel'));
+    setATut(await getData('schedtut'));
     const weekNum = await getData('weeksel'));
 
     if(weekNum == 1) {
@@ -144,7 +149,34 @@ const TimeSelectScreen = ({navigation}) => {
     }
 
     const finalTimes = times.split(", ");
-    setFTimes(finalTimes)
+    const aTimes = [];
+    let a = false;
+    for (let i = 0; i<finalTimes.length; i++) {
+      for (let k = 0; k<select.length; k++) {
+        if(select[k].tutor != atut) {
+          a = false;
+        } else {
+          if(select[k].day != day && select[k].time != finalTimes[i]) {
+              a = false;
+          } else if (select[k].day == day && select[k].time == finalTimes[i]) {
+              a = true;
+              break;
+          } else if (select[k].day != day && select[k].time == finalTimes[i]) {
+              a = false;
+          } else if (select[k].day == day && select[k].time != finalTimes[i]) {
+              a = false;
+          } else {
+              continue;
+          }
+        }
+      
+      }
+      aTimes.push({
+        time: finalTimes[i],
+        available: a,
+      })
+    }
+    setFTimes(aTimes);
   };
 
   load();
@@ -167,15 +199,15 @@ const TimeSelectScreen = ({navigation}) => {
   // });
 
   const confirmTime = async () => {
-    const pos = ftimes.indexOf(timesel);
-    const ntimes = ftimes.splice(pos, 1);
-    setFTimes(ntimes);
+    // const pos = ftimes.indexOf(timesel);
+    // const ntimes = ftimes.splice(pos, 1);
+    // setFTimes(ntimes);
     navigation.navigate("ConfirmApp");
   }
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <StepHeader />
       <View style={styles.otherbg}>
         <FlatList 
           data={ftimes} 
@@ -185,7 +217,8 @@ const TimeSelectScreen = ({navigation}) => {
                 storeData('timesel', item);
                 setTimeSel(item);
                 confirmTime();
-              }> 
+              }
+              disabled={item.available}> 
               <Text>{item}</Text>
             </TouchableOpacity>
 

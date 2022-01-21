@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import Header from '../components/Header';
+import StepHeader from '../components/StepHeader';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -51,6 +51,7 @@ const ConfirmAppointmentScreen = ({navigation}) => {
       .set({
         appointmentDay: aday,
         appointmentTime: time,
+        tutorChosen: tut,
       })
       .then(() => {
         Alert.alert('Thanks', "Your appointment was successfully scheduled.");
@@ -61,7 +62,7 @@ const ConfirmAppointmentScreen = ({navigation}) => {
   load();
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <StepHeader />
       <View style={styles.otherbg}>
         <Text>{aday}</Text>
         <Text>{time}</Text>
