@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import firestore from '@react-native-firebase/firestore';
 
-const ThurdayTimeScreen = ({navigation}) => {
+const ThursdayTimeScreen = ({navigation}) => {
   const [t1, setT1] = useState(false);
   const [t2, setT2] = useState(false);
   const [t3, setT3] = useState(false);

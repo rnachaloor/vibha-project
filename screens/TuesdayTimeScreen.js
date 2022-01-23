@@ -36,7 +36,6 @@ const TuesdayTimeScreen = ({navigation}) => {
   const submitTimes = async () => {
     let daysCheck = [t1, t2, t3, t4, t5, t6, t7];
     let timeSpot = [
-    let timeSpot = [
       '4:30pm - 5:00pm',
       '5:15pm - 5:45pm',
       '6:00pm - 6:30pm',

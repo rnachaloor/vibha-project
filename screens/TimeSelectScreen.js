@@ -17,6 +17,7 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import StepHeader from '../components/StepHeader';
+import Header from '../components/Header';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -67,114 +68,113 @@ const TimeSelectScreen = ({navigation}) => {
     setMail(await getData('schedtutem'));
     setDay(await getData('datesel'));
     setATut(await getData('schedtut'));
-    const weekNum = await getData('weeksel'));
+    const weekNum = await getData('weeksel');
 
-    if(weekNum == 1) {
+    if (weekNum == 1) {
       setWeek('Monday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().mondaytimes);
-        }
-      });
-    } else if(weekNum == 2) {
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().mondaytimes);
+          }
+        });
+    } else if (weekNum == 2) {
       setWeek('Tuesday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().tuesdaytimes);
-        }
-      });
-    } else if(weekNum == 3) {
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().tuesdaytimes);
+          }
+        });
+    } else if (weekNum == 3) {
       setWeek('Wednesday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().wednesdaytimes);
-        }
-      });
-    } else if(weekNum == 4) {
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().wednesdaytimes);
+          }
+        });
+    } else if (weekNum == 4) {
       setWeek('Thursday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().thursdaytimes);
-        }
-      });
-    } else if(weekNum == 5) {
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().thursdaytimes);
+          }
+        });
+    } else if (weekNum == 5) {
       setWeek('Friday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().fridaytimes);
-        }
-      });
-    } else if(weekNum == 6) {
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().fridaytimes);
+          }
+        });
+    } else if (weekNum == 6) {
       setWeek('Saturday');
       const subscriber = firestore()
-      .collection('tutors')
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().saturdaytimes);
-        }
-      });
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().saturdaytimes);
+          }
+        });
     } else {
-      setWeek('Sunday')
+      setWeek('Sunday');
       const subscriber = firestore()
-      .collection('tutors');
-      .doc(mail)
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          setTimes(documentSnapshot.data().sundaytimes);
-        }
-      });
+        .collection('tutors')
+        .doc(mail)
+        .get()
+        .then(documentSnapshot => {
+          if (documentSnapshot.exists) {
+            setTimes(documentSnapshot.data().sundaytimes);
+          }
+        });
     }
 
-    const finalTimes = times.split(", ");
+    const finalTimes = times.split(', ');
     const aTimes = [];
     let a = false;
-    for (let i = 0; i<finalTimes.length; i++) {
-      for (let k = 0; k<select.length; k++) {
-        if(select[k].tutor != atut) {
+    for (let i = 0; i < finalTimes.length; i++) {
+      for (let k = 0; k < select.length; k++) {
+        if (select[k].tutor != atut) {
           a = false;
         } else {
-          if(select[k].day != day && select[k].time != finalTimes[i]) {
-              a = false;
+          if (select[k].day != day && select[k].time != finalTimes[i]) {
+            a = false;
           } else if (select[k].day == day && select[k].time == finalTimes[i]) {
-              a = true;
-              break;
+            a = true;
+            break;
           } else if (select[k].day != day && select[k].time == finalTimes[i]) {
-              a = false;
+            a = false;
           } else if (select[k].day == day && select[k].time != finalTimes[i]) {
-              a = false;
+            a = false;
           } else {
-              continue;
+            continue;
           }
         }
-      
       }
       aTimes.push({
         time: finalTimes[i],
         available: a,
-      })
+      });
     }
     setFTimes(aTimes);
   };
@@ -202,27 +202,26 @@ const TimeSelectScreen = ({navigation}) => {
     // const pos = ftimes.indexOf(timesel);
     // const ntimes = ftimes.splice(pos, 1);
     // setFTimes(ntimes);
-    navigation.navigate("ConfirmApp");
-  }
+    navigation.navigate('ConfirmApp');
+  };
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <StepHeader />
+      <Header />
       <View style={styles.otherbg}>
-        <FlatList 
-          data={ftimes} 
-          renderItem={({item}) =>
-            <TouchableOpacity 
-              onPress={
+        <FlatList
+          data={ftimes}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              onPress={() => {
                 storeData('timesel', item);
                 setTimeSel(item);
                 confirmTime();
-              }
-              disabled={item.available}> 
+              }}
+              disabled={item.available}>
               <Text>{item}</Text>
             </TouchableOpacity>
-
-          } 
+          )}
         />
       </View>
     </SafeAreaView>

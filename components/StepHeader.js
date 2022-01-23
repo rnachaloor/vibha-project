@@ -16,7 +16,7 @@ const StepHeader = (props) => {
     return (
       <View style={styles.mainbg}>
         <TouchableOpacity
-            style={otherStyle}
+            style={styles.icon}
             onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={50} />
         </TouchableOpacity>
@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-start',
     height: 82,
+  },
+  icon: {
+    left: -50,
+    top: 15,
   },
 })
 
