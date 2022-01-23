@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import StepHeader from '../components/StepHeader';
+import ProfileHeader from '../components/ProfileHeader';
 import Header from '../components/Header';
 import TutorDescription from '../components/TutorDescription';
 import SearchBar from '../components/SearchBar';
@@ -69,7 +69,7 @@ const TutorSelectScreen = ({navigation}) => {
   const filteredTutors = tutors.filter(createFilter(search, KEYS_TO_FILTERS));
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Tutor List</Text>

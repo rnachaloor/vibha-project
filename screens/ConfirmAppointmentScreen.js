@@ -17,7 +17,8 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import StepHeader from '../components/StepHeader';
+import ProfileHeader from '../components/ProfileHeader';
+import Header from '../components/Header';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -62,7 +63,7 @@ const ConfirmAppointmentScreen = ({navigation}) => {
   load();
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <StepHeader />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <Text>{aday}</Text>
         <Text>{time}</Text>

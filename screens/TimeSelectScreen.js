@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import StepHeader from '../components/StepHeader';
+import ProfileHeader from '../components/ProfileHeader';
 import Header from '../components/Header';
 
 import moment from 'moment';
@@ -207,7 +207,7 @@ const TimeSelectScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <FlatList
           data={ftimes}

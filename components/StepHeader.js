@@ -8,25 +8,23 @@ import {
   TouchableOpacity,
   useColorScheme,
   View,
-  Image
+  Image,
 } from 'react-native';
-import { Icon } from "react-native-vector-icons/Ionicons";
+import {Icon} from 'react-native-vector-icons/Ionicons';
 
-const StepHeader = (props) => {
-    return (
-      <View style={styles.mainbg}>
-        <TouchableOpacity
-            style={styles.icon}
-            onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" size={50} />
-        </TouchableOpacity>
-        <Image
-          style={styles.headerImage}
-          source={require('../images/vlogo_white_bg.png')}
-        />
-      </View>
-    )
-}
+const StepHeader = props => {
+  return (
+    <View style={styles.mainbg}>
+      <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={50} />
+      </TouchableOpacity>
+      <Image
+        style={styles.headerImage}
+        source={require('../images/vlogo_white_bg.png')}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   mainbg: {
@@ -44,6 +42,6 @@ const styles = StyleSheet.create({
     left: -50,
     top: 15,
   },
-})
+});
 
 export default StepHeader;
