@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,8 +14,12 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import Header from '../components/Header';
+import {AuthContext} from '../AuthProvider';
 
 const ForgotPasswordScreen = ({navigation}) => {
+  
+  const [email, setEmail] = useState('');
+
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <Header />
@@ -23,10 +27,10 @@ const ForgotPasswordScreen = ({navigation}) => {
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Reset Password</Text>
         <View style={styles.largeSpacing}></View>
-        <GoldTextBox style={[styles.leftAlignment]} text="Email" />
+        <GoldTextBox style={[styles.leftAlignment]} text="Email" onChangeText={value => setEmail(value)}/>
         <View style={styles.smallSpacing}></View>
         <View style={styles.smallSpacing}></View>
-        <BlackButton text="Request Reset" style={{alignSelf: 'center'}} />
+        <BlackButton text="Request Reset" style={{alignSelf: 'center'} onPress={() => forgotPassword(email)}} />
         <View style={styles.smallSpacing}></View>
       </View>
     </SafeAreaView>
