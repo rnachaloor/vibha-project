@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import Header from '../components/Header';
+import ProfileHeader from '../components/ProfileHeader';
 
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -60,7 +60,7 @@ const ThursdayTimeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <Text style={styles.titleText}>Thursdau</Text>
         <Text>4:30pm - 5:00pm</Text>

@@ -15,7 +15,7 @@ import {
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
 import CenteredTextCard from '../components/CenteredTextCard';
-import Header from '../components/Header';
+import ProfileHeader from '../components/ProfileHeader';
 import {useState} from 'react';
 import {storeData, getData} from '../functions/AsyncFunctions';
 
@@ -87,7 +87,7 @@ const SignUpDetailsScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>

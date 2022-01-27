@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
-import Header from '../components/Header';
+import ProfileHeader from '../components/ProfileHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {storeData, getData} from '../functions/AsyncFunctions';
 
@@ -61,7 +61,7 @@ const MoreDetailsTutorScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
-      <Header />
+      <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
         <View style={styles.largeSpacing}></View>
         <Text style={styles.titleText}>Sign Up</Text>
@@ -118,7 +118,7 @@ const MoreDetailsTutorScreen = ({navigation}) => {
         <BlackButton
           onPress={() => {
             saveData();
-            navigation.navigate('TimeChoice');
+            navigation.navigate('MondayTime');
           }}
           text="Next"
           style={{alignSelf: 'center'}}
