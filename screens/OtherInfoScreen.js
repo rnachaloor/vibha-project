@@ -93,11 +93,13 @@ const OtherInfoScreen = ({navigation}) => {
             .doc(email)
             .update({age: aage})
         }
+        let fage = 'false';
       } else {
         Alert.alert(
           'Error',
           'New age is the same as old age or new age is empty.',
         );
+        let fage = 'true';
       }
 
       if (agrade != grade && agrade != '') {
@@ -113,11 +115,9 @@ const OtherInfoScreen = ({navigation}) => {
             .doc(email)
             .update({grade: agrade})
         }
+        let fgrade = 'false';
       } else {
-        Alert.alert(
-          'Error',
-          'New grade is the same as old grade or new grade is empty.',
-        );
+        let fgrade = 'true';
       }
 
       if (asubjects != subjects && asubjects != '') {
@@ -133,14 +133,53 @@ const OtherInfoScreen = ({navigation}) => {
             .doc(email)
             .update({subjects: asubjects})
         }
+        let fsub = 'false';
       } else {
         Alert.alert(
           'Error',
           'New subjects are the same as old subjects or new subjects are empty.',
         );
+        let fsub = 'true';
       }
 
-      Alert.alert('SUCCESS', 'Your data was successfully changed.');
+      if (fage == 'false' && fgrade == 'false' && fsub == 'false') {
+        Alert.alert('SUCCESS', 'Your data was successfully changed.');
+      } else if (fage == 'true' && fgrade == 'false' && fsub == 'false') {
+        Alert.alert(
+          'Error',
+          'New age is the same as old age or new age is empty. Other data was updated',
+        );
+      } else if (fage == 'false' && fgrade == 'true' && fsub == 'false') {
+        Alert.alert(
+          'Error',
+          'New grade is the same as old grade or new grade is empty. Other data was updated',
+        );
+      } else if (fage == 'false' && fgrade == 'false' && fsub == 'true') {
+        Alert.alert(
+          'Error',
+          'New subjects are the same as old subjects or new subjects are empty. Other data was updated',
+        );
+      } else if (fage == 'true' && fgrade == 'true' && fsub == 'false') {
+        Alert.alert(
+          'Error',
+          'New age and grade are the same as old age and grade or new age and grade are empty. Other data was updated',
+        );
+      } else if (fage == 'true' && fgrade == 'false' && fsub == 'true') {
+        Alert.alert(
+          'Error',
+          'New age and subjects are the same as old age and subjects or new age and subjects are empty. Other data was updated',
+        );
+      } else if (fage == 'false' && fgrade == 'true' && fsub == 'true') {
+        Alert.alert(
+          'Error',
+          'New grade and subjects are the same as old grade and subjects or new grade and subjects are empty. Other data was updated',
+        );
+      } else {
+        Alert.alert(
+          'Error',
+          'All data is the same as old data or all inputs are empty.',
+        );
+      }
     }
 
     setModalOpen(true);
