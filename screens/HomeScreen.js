@@ -32,9 +32,65 @@ import {DrawerContent} from './DrawerContent';
 //import inAppMessaging from '@react-native-firebase/in-app-messaging';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import {getUserInfo} from '../functions/FirestoreFunctions';
+import firestore from '@react-native-firebase/firestore';
 import messaging from '@react-native-firebase/messaging';
+import { SliderBox } from "react-native-image-slider-box";
 
 const HomeScreen = ({navigation}) => {
+
+  const [email, setEmail] = useState('');
+  const [images, setImages] = useState([
+        "https://source.unsplash.com/1024x768/?nature",
+        "https://source.unsplash.com/1024x768/?water",
+        "https://source.unsplash.com/1024x768/?girl",
+        "https://source.unsplash.com/1024x768/?tree",
+      ])
+
+  const load = async () => {
+    setEmail(await getData('email'));
+    const subscriber = firestore()
+      .collection('tutors')
+      .doc(email)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          storeData('name', documentSnapshot.data().name);
+          storeData('username', documentSnapshot.data().username);
+          storeData('password', documentSnapshot.data().password);
+          storeData('age', documentSnapshot.data().age);
+          storeData('grade', documentSnapshot.data().grade);
+          storeData('choice', 'tutor');
+          storeData('lowgrade', documentSnapshot.data().lowGrade);
+          storeData('highgrade', documentSnapshot.data().highGrade);
+          storeData('subjects', documentSnapshot.data().subjects);
+          storeData('description', documentSnapshot.data().description);
+        } else {
+          continue;
+        }
+      });
+    
+    const subscriber = firestore()
+      .collection('students')
+      .doc(email)
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          storeData('name', documentSnapshot.data().name);
+          storeData('username', documentSnapshot.data().username);
+          storeData('password', documentSnapshot.data().password);
+          storeData('age', documentSnapshot.data().age);
+          storeData('grade', documentSnapshot.data().grade);
+          storeData('choice', 'student');
+          storeData('subjects', documentSnapshot.data().subjects);
+        } else {
+          continue;
+        }
+      });
+
+  }
+
+  load();
+
   return (
     <View style={styles.container}>
       <HomeHeader
@@ -45,7 +101,11 @@ const HomeScreen = ({navigation}) => {
       />
       <View style={styles.otherbg}>
         <Button onPress={console.log('Test')} title="testing" />
+        <SliderBox images={images} />
       </View>
+      <ScrollView style={styles.insidebg}>
+        <Text>Reminders place</Text>
+      </ScrollView>
     </View>
   );
 };
@@ -126,6 +186,16 @@ const styles = StyleSheet.create({
   otherbg: {
     flex: 7,
     backgroundColor: '#8839BF',
+  },
+  insidebg: {
+    alignSelf: 'center',
+    backgroundColor: '#D5B537',
+    width: '100%',
+    height: 500,
+    borderRadius: 20,
+    paddingTop: 20,
+    paddingLeft: 20,
+    bottom: 25,
   },
 });
 

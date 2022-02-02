@@ -47,82 +47,100 @@ const OtherInfoScreen = ({navigation}) => {
 
   const newChanges = async () => {
     const choice = await getData('choice');
-    if (aage != age && aage != '') {
-      storeData('age', aage);
-      if (choice == 'tutor') {
+    if(aage != '' && agrade != '' && asubjects != '' && aage != age && agrade != grade && asubjects != subjects) {
+      if(choice == 'tutor') {
+        storeData('age', aage);
+        storeData('grade', agrade);
+        storeData('subjects', asubjects);
         firestore()
           .collection('tutors')
           .doc(email)
-          .update({age: aage})
+          .update({
+            age: aage,
+            grade: agrade,
+            subjects: asubjects
+          })
           .then(() => {
-            Alert.alert('SUCCESS', 'Your age was successfully changed.');
+            Alert.alert('SUCCESS', 'Your data was successfully changed.');
           });
       } else {
+        storeData('age', aage);
+        storeData('grade', agrade);
+        storeData('subjects', asubjects);
         firestore()
           .collection('students')
           .doc(email)
-          .update({age: aage})
+          .update({
+            age: aage,
+            grade: agrade,
+            subjects: asubjects
+          })
           .then(() => {
-            Alert.alert('SUCCESS', 'Your age was successfully changed.');
+            Alert.alert('SUCCESS', 'Your data was successfully changed.');
           });
       }
-    } else {
-      Alert.alert(
-        'Error',
-        'New age is the same as old age or new age is empty.',
-      );
-    }
+    } else (){
+      if (aage != age && aage != '') {
+        storeData('age', aage);
+        if (choice == 'tutor') {
+          firestore()
+            .collection('tutors')
+            .doc(email)
+            .update({age: aage})
+        } else {
+          firestore()
+            .collection('students')
+            .doc(email)
+            .update({age: aage})
+        }
+      } else {
+        Alert.alert(
+          'Error',
+          'New age is the same as old age or new age is empty.',
+        );
+      }
 
-    if (agrade != grade && agrade != '') {
-      storeData('grade', agrade);
-      if (choice == 'tutor') {
-        firestore()
-          .collection('tutors')
-          .doc(email)
-          .update({grade: agrade})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
-          });
+      if (agrade != grade && agrade != '') {
+        storeData('grade', agrade);
+        if (choice == 'tutor') {
+          firestore()
+            .collection('tutors')
+            .doc(email)
+            .update({grade: agrade})
+        } else {
+          firestore()
+            .collection('students')
+            .doc(email)
+            .update({grade: agrade})
+        }
       } else {
-        firestore()
-          .collection('students')
-          .doc(email)
-          .update({grade: agrade})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your grade was successfully changed.');
-          });
+        Alert.alert(
+          'Error',
+          'New grade is the same as old grade or new grade is empty.',
+        );
       }
-    } else {
-      Alert.alert(
-        'Error',
-        'New grade is the same as old grade or new grade is empty.',
-      );
-    }
 
-    if (asubjects != subjects && asubjects != '') {
-      storeData('subjects', asubjects);
-      if (choice == 'tutor') {
-        firestore()
-          .collection('tutors')
-          .doc(email)
-          .update({subjects: asubjects})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your subjects were successfully changed.');
-          });
+      if (asubjects != subjects && asubjects != '') {
+        storeData('subjects', asubjects);
+        if (choice == 'tutor') {
+          firestore()
+            .collection('tutors')
+            .doc(email)
+            .update({subjects: asubjects})
+        } else {
+          firestore()
+            .collection('students')
+            .doc(email)
+            .update({subjects: asubjects})
+        }
       } else {
-        firestore()
-          .collection('students')
-          .doc(email)
-          .update({subjects: asubjects})
-          .then(() => {
-            Alert.alert('SUCCESS', 'Your subject were successfully changed.');
-          });
+        Alert.alert(
+          'Error',
+          'New subjects are the same as old subjects or new subjects are empty.',
+        );
       }
-    } else {
-      Alert.alert(
-        'Error',
-        'New subjects are the same as old subjects or new subjects are empty.',
-      );
+
+      Alert.alert('SUCCESS', 'Your data was successfully changed.');
     }
 
     setModalOpen(true);
