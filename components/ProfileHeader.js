@@ -20,7 +20,7 @@ const ProfileHeader = props => {
       </TouchableOpacity>
       <Image
         style={styles.headerImage}
-        source={require('../images/vlogo_white_bg.png')}
+        // source={require('../images/vlogo_white_bg.png')}
       />
     </View>
   );
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     right: -40,
   },
   icon: {
-    left: -50,
+    left: -150,
     top: 15,
   },
 });

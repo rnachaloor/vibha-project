@@ -39,11 +39,10 @@ const CalendarScreen = ({navigation}) => {
     setModalDate(moment(day.dateString).format('MMM. DD, YYYY'));
   };
 
-  const selectTimes = async (day) => {
-    let otherDay = moment(day.dateString).format('YYYY-MM-DD');
-    let change = moment(day.dateString).format('MMM. DD, YYYY');
-    const weekDay = new Date(change);
-    storeData("weeksel", weekDay);
+  const selectTimes = async () => {
+    let otherDay = moment(selected).format('YYYY-MM-DD');
+    let change = moment(selected).format('dddd');
+    storeData("weeksel", change);
     storeData("datesel", otherDay);
     navigation.navigate("TutorSelect");
 

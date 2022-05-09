@@ -64,12 +64,10 @@ const HomeScreen = ({navigation}) => {
           storeData('highgrade', documentSnapshot.data().highGrade);
           storeData('subjects', documentSnapshot.data().subjects);
           storeData('description', documentSnapshot.data().description);
-        } else {
-          continue;
         }
       });
     
-    const subscriber = firestore()
+    const subscriber1 = firestore()
       .collection('students')
       .doc(email)
       .get()
@@ -82,8 +80,6 @@ const HomeScreen = ({navigation}) => {
           storeData('grade', documentSnapshot.data().grade);
           storeData('choice', 'student');
           storeData('subjects', documentSnapshot.data().subjects);
-        } else {
-          continue;
         }
       });
 
@@ -100,12 +96,12 @@ const HomeScreen = ({navigation}) => {
         }}
       />
       <View style={styles.otherbg}>
-        <Button onPress={console.log('Test')} title="testing" />
+        <Button onPress={console.log('Test')} title="Information" />
         <SliderBox images={images} />
+        <ScrollView style={styles.insidebg}>
+          <Text>Reminders place</Text>
+        </ScrollView>
       </View>
-      <ScrollView style={styles.insidebg}>
-        <Text>Reminders place</Text>
-      </ScrollView>
     </View>
   );
 };
@@ -191,11 +187,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#D5B537',
     width: '100%',
-    height: 500,
+    height: 300,
     borderRadius: 20,
     paddingTop: 20,
     paddingLeft: 20,
-    bottom: 25,
   },
 });
 

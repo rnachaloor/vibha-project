@@ -42,9 +42,10 @@ const MoreDetailsStuScreen = ({navigation}) => {
     const age = await getData('age');
     const grade = await getData('grade');
     const subjects = await getData('subjects');
+    register(email, password);
     firestore()
       .collection('students')
-      .doc(username)
+      .doc(email)
       .set({
         name: name,
         username: username,
@@ -61,7 +62,6 @@ const MoreDetailsStuScreen = ({navigation}) => {
         console.log('SUCCESS');
         navigation.navigate('Home');
       });
-    register(email, password);
   };
 
   return (

@@ -27,7 +27,7 @@ const AboutScreen = ({navigation}) => {
         <Text style={styles.titleText}>About</Text>
         <View style={styles.smallSpacing}></View>
         <View style={styles.insidebg}>
-          <Text style={styles.subTitle}>Vibha</Text>
+          <Text style={styles.subTitle}>App</Text>
           <View style={styles.smallSpacing}></View>
           <Text style={styles.text}>
             We are a{' '}

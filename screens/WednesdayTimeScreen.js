@@ -13,7 +13,6 @@ import {
   Button,
   Modal,
   FlatList,
-  CheckBox,
 } from 'react-native';
 import GoldTextBox from '../components/GoldTextBox';
 import BlackButton from '../components/BlackButton';
@@ -23,6 +22,7 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {storeData, getData} from '../functions/AsyncFunctions';
 import firestore from '@react-native-firebase/firestore';
+import CheckBox from '@react-native-community/checkbox';
 
 const WednesdayTimeScreen = ({navigation}) => {
   const [w1, setW1] = useState(false);
@@ -47,7 +47,7 @@ const WednesdayTimeScreen = ({navigation}) => {
     let final = '';
 
     for (let i = 0; i < 8; i++) {
-      let option = daysChecks[i];
+      let option = daysCheck[i];
       if (option == true) {
         final = final + timeSpot[i] + ', ';
       }
@@ -55,7 +55,7 @@ const WednesdayTimeScreen = ({navigation}) => {
     final = final.slice(0, -2);
     storeData('wednesdaytimes', final);
 
-    navigation.navigate('ThrusdayTime');
+    navigation.navigate('ThursdayTime');
   };
 
   return (

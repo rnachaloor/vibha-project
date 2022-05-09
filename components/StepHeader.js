@@ -20,7 +20,7 @@ const StepHeader = props => {
       </TouchableOpacity>
       <Image
         style={styles.headerImage}
-        source={require('../images/vlogo_white_bg.png')}
+        // source={require('../images/vlogo_white_bg.png')}
       />
     </View>
   );
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: 82,
   },
   icon: {
-    left: -50,
+    left: -150,
     top: 15,
   },
 });

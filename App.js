@@ -61,7 +61,7 @@ export const LoginStackScreen = () => {
       <Stack.Screen name="WednesdayTime" component={WednesdayTimeScreen} />
       <Stack.Screen name="ThursdayTime" component={ThursdayTimeScreen} />
       <Stack.Screen name="FridayTime" component={FridayTimeScreen} />
-      <Stack.Screen name="SaturdayTIme" component={SaturdayTimeScreen} />
+      <Stack.Screen name="SaturdayTime" component={SaturdayTimeScreen} />
       <Stack.Screen name="SundayTime" component={SundayTimeScreen} />
       <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
     </Stack.Navigator>

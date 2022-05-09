@@ -17,7 +17,7 @@ const Header = (props) => {
       <View style={styles.mainbg}>
         <Image
           style={styles.headerImage}
-          source={require('../images/vlogo_white_bg.png')}
+          // source={require('../images/vlogo_white_bg.png')}
         />
       </View>
     )

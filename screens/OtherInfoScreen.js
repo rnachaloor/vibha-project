@@ -79,7 +79,7 @@ const OtherInfoScreen = ({navigation}) => {
             Alert.alert('SUCCESS', 'Your data was successfully changed.');
           });
       }
-    } else (){
+    } else {
       if (aage != age && aage != '') {
         storeData('age', aage);
         if (choice == 'tutor') {
@@ -198,7 +198,7 @@ const OtherInfoScreen = ({navigation}) => {
           <View style={styles.largeSpacing}></View>
         </View>
       </Modal>
-      <Modal>
+      <Modal visible={otherModalOpen} animationType="slide">
         <View style={styles.modal}>
           <TouchableOpacity
             style={styles.otherIcon}

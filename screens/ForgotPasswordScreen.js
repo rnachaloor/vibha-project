@@ -30,7 +30,7 @@ const ForgotPasswordScreen = ({navigation}) => {
         <GoldTextBox style={[styles.leftAlignment]} text="Email" onChangeText={value => setEmail(value)}/>
         <View style={styles.smallSpacing}></View>
         <View style={styles.smallSpacing}></View>
-        <BlackButton text="Request Reset" style={{alignSelf: 'center'} onPress={() => forgotPassword(email)}} />
+        <BlackButton text="Request Reset" style={{alignSelf: 'center'}} onPress={() => forgotPassword(email)} />
         <View style={styles.smallSpacing}></View>
       </View>
     </SafeAreaView>

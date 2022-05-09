@@ -42,7 +42,7 @@ const ConfirmAppointmentScreen = ({navigation}) => {
     setTut(tutorChoice);
 
     const emailSet = await getData('email');
-    setEmail(emailset);
+    setEmail(emailSet);
   }
 
   const finalizeTime = async () => {
@@ -65,9 +65,12 @@ const ConfirmAppointmentScreen = ({navigation}) => {
     <SafeAreaView style={[styles.container, {flexDirection: 'column'}]}>
       <ProfileHeader onPress={() => navigation.goBack()}/>
       <View style={styles.otherbg}>
-        <Text>{aday}</Text>
-        <Text>{time}</Text>
-        <Text>{tut}</Text>
+        <Text style={styles.otherText}>   Confirm Information</Text>
+        <View style={styles.insidebg}>
+          <Text style={styles.titleText}>{aday}</Text>
+          <Text style={styles.titleText}>{time}</Text>
+          <Text style={styles.titleText}>{tut}</Text>
+        </View>
 
         <BlackButton
           text="Confirm"
@@ -96,15 +99,19 @@ const styles = StyleSheet.create({
     flex: 7,
     backgroundColor: '#8839BF',
   },
+  insidebg: {
+    paddingTop: 50,
+    paddingBottom: 50,
+  },
   titleText: {
+    fontSize: 30,
+    alignSelf: 'center',
+    color: '#D5B537',
+  },
+  otherText: {
     fontSize: 55,
     alignSelf: 'center',
     color: 'white',
-  },
-  otherText: {
-    fontSize: 50,
-    alignSelf: 'center',
-    color: 'black',
   },
   largeSpacing: {
     height: 25,

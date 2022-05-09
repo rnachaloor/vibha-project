@@ -94,7 +94,7 @@ const TutorSelectScreen = ({navigation}) => {
                 text={"Schedule Appointment with " + item.name}
                 onPress={() => {
                   storeData("schedtut", item.name);
-                  storeData("scehdtutem", item.email);
+                  storeData("schedtutem", item.email);
                   finalTutor()
                 }}
                 style={{alignSelf: 'center', paddingTop: 10, paddingBottom: 10}}
